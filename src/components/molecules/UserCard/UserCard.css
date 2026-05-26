@@ -1,0 +1,47 @@
+@import '../../../tokens/index.css';
+
+.user-card {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xsmall);
+  padding: var(--spacing-xsmall) var(--spacing-small);
+  border-radius: var(--radius-medium);
+  background: transparent;
+  border: none;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.user-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+}
+
+/* Sizes */
+
+.user-card--lg .avatar {
+  width: 48px;
+  height: 48px;
+}
+
+/* Interactive states */
+
+.user-card--interactive {
+  cursor: pointer;
+}
+
+.user-card:hover {
+  background: var(--color-bg-secondary);
+}
+
+.user-card--selected {
+  background: var(--color-status-accent-muted);
+}
+
+.user-card--interactive:focus-visible {
+  outline: var(--border-focus) solid var(--color-border-focus);
+  outline-offset: 2px;
+}

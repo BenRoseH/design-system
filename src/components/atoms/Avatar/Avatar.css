@@ -11,7 +11,7 @@
   width: 40px;
   height: 40px;
   border-radius: var(--radius-medium);
-  border: var(--border-medium) solid var(--color-border-default);
+  border: var(--border-default) solid var(--color-border-default);
   background: var(--color-bg-secondary);
   overflow: hidden;
   flex-shrink: 0;

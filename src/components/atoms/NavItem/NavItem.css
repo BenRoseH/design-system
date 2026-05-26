@@ -1,0 +1,73 @@
+@import '../../../tokens/index.css';
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xsmall);
+  padding: var(--spacing-xsmall) var(--spacing-small);
+  border-radius: var(--radius-medium);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  width: 100%;
+  min-height: 40px;
+  text-align: left;
+  color: var(--color-content-default);
+  text-decoration: none;
+}
+
+.nav-item .text {
+  color: var(--color-content-default);
+}
+
+/* Icon only */
+
+.nav-item--icon-only {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+/* Hover */
+
+.nav-item:hover:not(.nav-item--disabled) {
+  background: var(--color-bg-secondary);
+}
+
+/* Selected */
+
+.nav-item--selected {
+  background: var(--color-bg-secondary);
+  color: var(--color-content-brand-primary);
+}
+
+.nav-item--selected .text {
+  color: var(--color-content-brand-primary);
+}
+
+/* Active : selected + hover */
+
+.nav-item--selected:hover:not(.nav-item--disabled) {
+  background: var(--color-status-accent-muted);
+}
+
+/* Disabled */
+
+.nav-item--disabled {
+  pointer-events: none;
+  color: var(--color-content-disable);
+}
+
+.nav-item--disabled .text {
+  color: var(--color-content-disable);
+}
+
+/* Focus visible */
+
+.nav-item:focus-visible {
+  outline: var(--border-focus) solid var(--color-border-focus);
+  outline-offset: 2px;
+  background: var(--color-bg-secondary);
+}

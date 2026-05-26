@@ -1,0 +1,89 @@
+@import '../../../tokens/index.css';
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2xsmall);
+  height: 32px;
+  padding-inline: var(--spacing-xsmall);
+  border-radius: var(--radius-medium);
+  box-sizing: border-box;
+}
+
+.tag--compact {
+  height: 24px;
+}
+
+/* Dot */
+
+.tag__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  flex-shrink: 0;
+  align-self: center;
+}
+
+/* Icon */
+
+.tag__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Statuses */
+
+.tag--positive {
+  background: var(--color-status-positive-muted);
+  color: var(--color-status-positive-emphasized);
+}
+
+.tag--positive .tag__dot {
+  background: var(--color-status-positive-emphasized);
+}
+
+.tag--negative {
+  background: var(--color-status-negative-muted);
+  color: var(--color-status-negative-emphasized);
+}
+
+.tag--negative .tag__dot {
+  background: var(--color-status-negative-emphasized);
+}
+
+.tag--neutral {
+  background: var(--color-bg-secondary);
+  color: var(--color-content-muted);
+}
+
+.tag--neutral .tag__dot {
+  background: var(--color-content-muted);
+}
+
+.tag--warning {
+  background: var(--color-status-warning-muted);
+  color: var(--color-status-warning-emphasized);
+}
+
+.tag--warning .tag__dot {
+  background: var(--color-status-warning-emphasized);
+}
+
+.tag--information {
+  background: var(--color-status-info-muted);
+  color: var(--color-status-info-emphasized);
+}
+
+.tag--information .tag__dot {
+  background: var(--color-status-info-emphasized);
+}
+
+.tag--accent {
+  background: var(--color-status-accent-muted);
+  color: var(--color-status-accent-emphasized);
+}
+
+.tag--accent .tag__dot {
+  background: var(--color-status-accent-emphasized);
+}

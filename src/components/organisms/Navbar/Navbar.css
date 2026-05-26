@@ -1,0 +1,121 @@
+@import '../../../tokens/index.css';
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 240px;
+  flex-shrink: 0;
+  background: var(--color-bg-default);
+  padding: var(--spacing-medium);
+  box-sizing: border-box;
+  transition: width 0.2s ease;
+  overflow: hidden;
+}
+
+.navbar--collapsed {
+  width: 72px;
+}
+
+/* Header */
+
+.navbar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--spacing-medium);
+  position: relative;
+}
+
+.navbar__header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: calc(-1 * var(--spacing-medium));
+  right: calc(-1 * var(--spacing-medium));
+  border-bottom: var(--border-default) solid var(--color-border-muted);
+}
+
+.navbar__sections {
+  margin-top: var(--spacing-medium);
+}
+
+.navbar--collapsed .navbar__header {
+  justify-content: center;
+}
+
+.navbar__title {
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 1;
+  max-width: 200px;
+  transition: opacity 0.15s ease, max-width 0.15s ease;
+}
+
+.navbar--collapsed .navbar__title {
+  opacity: 0;
+  max-width: 0;
+}
+
+/* Sections */
+
+.navbar__sections {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-large);
+}
+
+.navbar__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xsmall);
+}
+
+.navbar__section-label {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+  padding-inline: var(--spacing-small);
+  text-transform: uppercase;
+}
+
+.navbar--collapsed .navbar__section-label {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.navbar__section-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3xsmall);
+}
+
+/* User */
+
+.navbar__user {
+  padding-top: var(--spacing-small);
+  position: relative;
+}
+
+.navbar__user::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: calc(-1 * var(--spacing-medium));
+  right: calc(-1 * var(--spacing-medium));
+  border-top: var(--border-default) solid var(--color-border-muted);
+}
+
+.navbar--collapsed .user-card__info {
+  display: none;
+}
+
+.navbar--collapsed .user-card {
+  padding: 0;
+  justify-content: center;
+}
