@@ -1,0 +1,163 @@
+@import '../../../tokens/index.css';
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+.text {
+  font-family: var(--font-family-sans);
+  color: var(--color-content-default);
+  margin: 0;
+}
+
+/* ============================================================
+   VARIANT — Display
+   ============================================================ */
+
+.text--display-large {
+  font-size: var(--typography-display-large-font-size);
+  line-height: var(--typography-display-large-line-height);
+  font-weight: var(--typography-display-large-font-weight);
+  letter-spacing: var(--typography-display-large-letter-spacing);
+}
+
+.text--display-medium {
+  font-size: var(--typography-display-medium-font-size);
+  line-height: var(--typography-display-medium-line-height);
+  font-weight: var(--typography-display-medium-font-weight);
+  letter-spacing: var(--typography-display-medium-letter-spacing);
+}
+
+.text--display-small {
+  font-size: var(--typography-display-small-font-size);
+  line-height: var(--typography-display-small-line-height);
+  font-weight: var(--typography-display-small-font-weight);
+  letter-spacing: var(--typography-display-small-letter-spacing);
+}
+
+/* ============================================================
+   VARIANT — Heading
+   ============================================================ */
+
+.text--heading-xlarge {
+  font-size: var(--typography-heading-xlarge-font-size);
+  line-height: var(--typography-heading-xlarge-line-height);
+  font-weight: var(--typography-heading-xlarge-font-weight);
+  letter-spacing: var(--typography-heading-xlarge-letter-spacing);
+}
+
+.text--heading-large {
+  font-size: var(--typography-heading-large-font-size);
+  line-height: var(--typography-heading-large-line-height);
+  font-weight: var(--typography-heading-large-font-weight);
+  letter-spacing: var(--typography-heading-large-letter-spacing);
+}
+
+.text--heading-medium {
+  font-size: var(--typography-heading-medium-font-size);
+  line-height: var(--typography-heading-medium-line-height);
+  font-weight: var(--typography-heading-medium-font-weight);
+  letter-spacing: var(--typography-heading-medium-letter-spacing);
+}
+
+.text--heading-small {
+  font-size: var(--typography-heading-small-font-size);
+  line-height: var(--typography-heading-small-line-height);
+  font-weight: var(--typography-heading-small-font-weight);
+  letter-spacing: var(--typography-heading-small-letter-spacing);
+}
+
+/* ============================================================
+   VARIANT — Body large
+   ============================================================ */
+
+.text--body-large-default {
+  font-size: var(--typography-body-large-default-font-size);
+  line-height: var(--typography-body-large-default-line-height);
+  font-weight: var(--typography-body-large-default-font-weight);
+  letter-spacing: var(--typography-body-large-default-letter-spacing);
+}
+
+.text--body-large-moderate {
+  font-size: var(--typography-body-large-moderate-font-size);
+  line-height: var(--typography-body-large-moderate-line-height);
+  font-weight: var(--typography-body-large-moderate-font-weight);
+  letter-spacing: var(--typography-body-large-moderate-letter-spacing);
+}
+
+.text--body-large-strong {
+  font-size: var(--typography-body-large-strong-font-size);
+  line-height: var(--typography-body-large-strong-line-height);
+  font-weight: var(--typography-body-large-strong-font-weight);
+  letter-spacing: var(--typography-body-large-strong-letter-spacing);
+}
+
+/* ============================================================
+   VARIANT — Body medium
+   ============================================================ */
+
+.text--body-medium-default {
+  font-size: var(--typography-body-medium-default-font-size);
+  line-height: var(--typography-body-medium-default-line-height);
+  font-weight: var(--typography-body-medium-default-font-weight);
+  letter-spacing: var(--typography-body-medium-default-letter-spacing);
+}
+
+.text--body-medium-moderate {
+  font-size: var(--typography-body-medium-moderate-font-size);
+  line-height: var(--typography-body-medium-moderate-line-height);
+  font-weight: var(--typography-body-medium-moderate-font-weight);
+  letter-spacing: var(--typography-body-medium-moderate-letter-spacing);
+}
+
+.text--body-medium-strong {
+  font-size: var(--typography-body-medium-strong-font-size);
+  line-height: var(--typography-body-medium-strong-line-height);
+  font-weight: var(--typography-body-medium-strong-font-weight);
+  letter-spacing: var(--typography-body-medium-strong-letter-spacing);
+}
+
+/* ============================================================
+   VARIANT — Body small
+   ============================================================ */
+
+.text--body-small-default {
+  font-size: var(--typography-body-small-default-font-size);
+  line-height: var(--typography-body-small-default-line-height);
+  font-weight: var(--typography-body-small-default-font-weight);
+  letter-spacing: var(--typography-body-small-default-letter-spacing);
+}
+
+.text--body-small-moderate {
+  font-size: var(--typography-body-small-moderate-font-size);
+  line-height: var(--typography-body-small-moderate-line-height);
+  font-weight: var(--typography-body-small-moderate-font-weight);
+  letter-spacing: var(--typography-body-small-moderate-letter-spacing);
+}
+
+.text--body-small-strong {
+  font-size: var(--typography-body-small-strong-font-size);
+  line-height: var(--typography-body-small-strong-line-height);
+  font-weight: var(--typography-body-small-strong-font-weight);
+  letter-spacing: var(--typography-body-small-strong-letter-spacing);
+}
+
+/* ============================================================
+   VARIANT — Code
+   ============================================================ */
+
+.text--code-default {
+  font-family: var(--font-family-mono);
+  font-size: var(--typography-code-default-font-size);
+  line-height: var(--typography-code-default-line-height);
+  font-weight: var(--typography-code-default-font-weight);
+  letter-spacing: var(--typography-code-default-letter-spacing);
+}
+
+/* ============================================================
+   COLOR
+   ============================================================ */
+
+.text--muted         { color: var(--color-content-muted); }
+.text--disable       { color: var(--color-content-disable); }
+.text--brand-primary { color: var(--color-content-brand-primary); }

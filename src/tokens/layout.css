@@ -1,0 +1,20 @@
+/* ============================================================
+   DESIGN SYSTEM — LAYOUT TOKENS
+   ============================================================ */
+
+:root {
+  /* Max-widths */
+  --layout-max-width-xs:  540px;
+  --layout-max-width-sm:  720px;
+  --layout-max-width-md:  960px;
+  --layout-max-width-lg:  1200px;
+  --layout-max-width-xl:  1400px;
+  --layout-max-width-2xl: 1600px;
+
+  /* Breakpoints */
+  --breakpoint-sm:  640px;
+  --breakpoint-md:  768px;
+  --breakpoint-lg:  1024px;
+  --breakpoint-xl:  1280px;
+  --breakpoint-2xl: 1536px;
+}

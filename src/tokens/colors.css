@@ -27,6 +27,7 @@
   --color-content-muted:           rgba(0, 0, 0, 0.68);
   --color-content-disable:         rgba(0, 0, 0, 0.20);
   --color-content-brand-primary:   rgba(241, 94, 0, 1);
+  --color-content-on-brand:        rgba(0, 0, 0, 1);
 
   /* --- ACTION / DEFAULT --- */
   --color-action-default-enabled:  rgba(0, 0, 0, 1);
@@ -91,6 +92,7 @@
   --color-content-muted:           rgba(255, 255, 255, 0.64);
   --color-content-disable:         rgba(255, 255, 255, 0.20);
   --color-content-brand-primary:   rgba(255, 121, 0, 1);
+  --color-content-on-brand:        rgba(0, 0, 0, 1);
 
   /* --- ACTION / DEFAULT --- */
   --color-action-default-enabled:  rgba(238, 238, 238, 1);

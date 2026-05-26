@@ -6,7 +6,7 @@ import {
 import { Button } from './Button';
 
 const meta = {
-  title: 'Components/Button',
+  title: 'Atoms/Button',
   component: Button,
   args: {
     children: 'label',

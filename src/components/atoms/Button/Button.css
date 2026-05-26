@@ -1,4 +1,4 @@
-@import '../../tokens/index.css';
+@import '../../../tokens/index.css';
 
 /* ============================================================
    BASE
@@ -60,19 +60,19 @@
 
 .btn--default {
   color: var(--color-action-default-enabled);
-  border-color: var(--color-border-emphasized);
+  border-color: transparent;
   background: transparent;
+  box-shadow: inset 0 0 0 1px var(--color-border-emphasized);
 }
 
 .btn--default:hover:not([aria-disabled="true"]) {
   color: var(--color-action-default-hover);
-  border-color: var(--color-action-default-hover);
-  border-width: var(--border-medium);
+  box-shadow: inset 0 0 0 2px var(--color-action-default-hover);
 }
 
 .btn--default:active:not([aria-disabled="true"]) {
   color: var(--color-action-default-pressed);
-  border-color: var(--color-action-default-pressed);
+  box-shadow: inset 0 0 0 2px var(--color-action-default-pressed);
 }
 
 /* ============================================================
@@ -116,16 +116,28 @@
    ============================================================ */
 
 .btn--brand {
-  color: var(--color-bg-default);
+  color: var(--color-content-on-brand);
   background: var(--color-content-brand-primary);
   border-color: transparent;
 }
 
+.btn--brand[aria-disabled="true"],
+.btn--brand:disabled {
+  color: var(--color-content-disable);
+  opacity: 1;
+}
+
 .btn--brand:hover:not([aria-disabled="true"]) {
+  color: var(--color-bg-default);
   background: var(--color-action-default-hover);
 }
 
+.btn--brand:focus-visible:not([aria-disabled="true"]) {
+  color: var(--color-bg-default);
+}
+
 .btn--brand:active:not([aria-disabled="true"]) {
+  color: var(--color-bg-default);
   background: var(--color-action-default-pressed);
 }
 
@@ -189,8 +201,7 @@
 
 .btn--default.btn--loading {
   color: var(--color-action-default-loading);
-  border-color: var(--color-action-default-loading);
-  border-width: var(--border-medium);
+  box-shadow: inset 0 0 0 2px var(--color-action-default-loading);
 }
 
 .btn--strong.btn--loading {
@@ -220,9 +231,12 @@
 }
 
 .btn--strong .btn__spinner,
-.btn--negative .btn__spinner,
-.btn--brand .btn__spinner {
+.btn--negative .btn__spinner {
   border-top-color: var(--color-bg-default);
+}
+
+.btn--brand .btn__spinner {
+  border-top-color: var(--color-content-on-brand);
 }
 
 @keyframes btn-spin {
