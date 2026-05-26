@@ -1,3 +1,5 @@
+@import '../../tokens/index.css';
+
 /* ============================================================
    BASE
    ============================================================ */
@@ -6,25 +8,44 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 0 16px;
-  border-radius: 4px;
-  border: 1px solid transparent;
+  gap: var(--spacing-small);
+  padding: var(--spacing-small) var(--spacing-medium);
+  height: 40px;
+  border-radius: var(--radius-medium);
+  border: var(--border-default) solid transparent;
   background: transparent;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1;
+  font-family: var(--font-family-sans);
+  font-size: var(--typography-body-medium-strong-font-size);
+  font-weight: var(--typography-body-medium-strong-font-weight);
+  line-height: var(--typography-body-medium-strong-line-height);
+  letter-spacing: var(--typography-body-medium-strong-letter-spacing);
   white-space: nowrap;
   position: relative;
-  height: 40px;
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
+/* ============================================================
+   SIZE — compact
+   ============================================================ */
+
+.btn--compact {
+  padding: var(--spacing-xsmall) var(--spacing-medium);
+  height: 32px;
+}
+
+/* ============================================================
+   FOCUS
+   ============================================================ */
+
 .btn:focus-visible {
-  outline: 2px solid var(--color-border-focus);
+  outline: var(--border-focus) solid var(--color-border-focus);
   outline-offset: 2px;
 }
+
+/* ============================================================
+   DISABLED
+   ============================================================ */
 
 .btn[aria-disabled="true"],
 .btn:disabled {
@@ -34,27 +55,19 @@
 }
 
 /* ============================================================
-   SIZE
-   ============================================================ */
-
-.btn--compact {
-  height: 32px;
-}
-
-/* ============================================================
    HIERARCHY — default
-   transparent bg, 1px border, text+border = --color-action-default-enabled
    ============================================================ */
 
 .btn--default {
   color: var(--color-action-default-enabled);
-  border-color: var(--color-action-default-enabled);
+  border-color: var(--color-border-emphasized);
   background: transparent;
 }
 
 .btn--default:hover:not([aria-disabled="true"]) {
-  color: var(--color-action-default-pressed);
-  border-color: var(--color-action-default-pressed);
+  color: var(--color-action-default-hover);
+  border-color: var(--color-action-default-hover);
+  border-width: var(--border-medium);
 }
 
 .btn--default:active:not([aria-disabled="true"]) {
@@ -64,7 +77,6 @@
 
 /* ============================================================
    HIERARCHY — strong
-   filled bg = --color-action-default-enabled, white text
    ============================================================ */
 
 .btn--strong {
@@ -74,7 +86,7 @@
 }
 
 .btn--strong:hover:not([aria-disabled="true"]) {
-  background: var(--color-action-default-pressed);
+  background: var(--color-action-default-hover);
 }
 
 .btn--strong:active:not([aria-disabled="true"]) {
@@ -83,7 +95,6 @@
 
 /* ============================================================
    HIERARCHY — negative
-   filled bg = --color-status-negative-emphasized, white text
    ============================================================ */
 
 .btn--negative {
@@ -97,12 +108,11 @@
 }
 
 .btn--negative:active:not([aria-disabled="true"]) {
-  background: color-mix(in srgb, var(--color-status-negative-emphasized) 75%, black);
+  background: color-mix(in srgb, var(--color-status-negative-emphasized) 70%, black);
 }
 
 /* ============================================================
    HIERARCHY — brand
-   filled bg = --color-content-brand-primary, white text
    ============================================================ */
 
 .btn--brand {
@@ -112,7 +122,7 @@
 }
 
 .btn--brand:hover:not([aria-disabled="true"]) {
-  background: var(--color-action-default-pressed);
+  background: var(--color-action-default-hover);
 }
 
 .btn--brand:active:not([aria-disabled="true"]) {
@@ -121,7 +131,6 @@
 
 /* ============================================================
    HIERARCHY — minimal
-   no bg, no border, text = --color-action-default-enabled
    ============================================================ */
 
 .btn--minimal {
@@ -131,7 +140,8 @@
 }
 
 .btn--minimal:hover:not([aria-disabled="true"]) {
-  color: var(--color-action-default-pressed);
+  color: var(--color-action-default-hover);
+  background: var(--color-bg-secondary);
 }
 
 .btn--minimal:active:not([aria-disabled="true"]) {
@@ -139,24 +149,17 @@
 }
 
 /* ============================================================
-   LAYOUT — icon-only: carré, pas de padding
+   LAYOUT — icon-only
    ============================================================ */
 
 .btn--icon-only {
   padding: 0;
   width: 40px;
+  gap: 0;
 }
 
 .btn--compact.btn--icon-only {
   width: 32px;
-}
-
-/* ============================================================
-   LAYOUT — text-only: pas d'icône, padding horizontal standard
-   ============================================================ */
-
-.btn--text-only {
-  gap: 0;
 }
 
 /* ============================================================
@@ -171,8 +174,7 @@
 }
 
 /* ============================================================
-   LOADING STATE
-   label hidden, spinner shown
+   LOADING
    ============================================================ */
 
 .btn--loading .btn__label,
@@ -184,7 +186,7 @@
   position: absolute;
   width: 16px;
   height: 16px;
-  border: 2px solid transparent;
+  border: var(--border-default) solid transparent;
   border-top-color: currentColor;
   border-radius: 50%;
   animation: btn-spin 0.6s linear infinite;

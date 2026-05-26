@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { ArrowRight } from '@phosphor-icons/react';
 import { Accordion } from './components/Accordion/Accordion';
 import { Button, type ButtonHierarchy } from './components/Button/Button';
+import './App.css';
 
 const accordionItems = [
   {
@@ -24,31 +26,49 @@ const accordionItems = [
 const hierarchies: ButtonHierarchy[] = ['default', 'strong', 'negative', 'brand', 'minimal'];
 
 function App() {
+  const [dark, setDark] = useState(false);
+
+  function toggleTheme() {
+    const next = !dark;
+    setDark(next);
+    document.documentElement.dataset.theme = next ? 'dark' : '';
+  }
+
   return (
-    <main style={{ maxWidth: '640px', margin: '4rem auto', padding: '0 1rem' }}>
-      <h1 style={{ marginBottom: '2rem' }}>Button</h1>
-
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '4rem' }}>
-        {hierarchies.map((hierarchy) => (
-          <div key={hierarchy} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <span style={{ width: '80px', fontSize: '12px', color: '#666' }}>{hierarchy}</span>
-            <Button hierarchy={hierarchy} size="default">label</Button>
-            <Button hierarchy={hierarchy} size="compact">label</Button>
-          </div>
-        ))}
+    <main className="app">
+      <div className="app__topbar">
+        <Button hierarchy="minimal" onClick={toggleTheme}>
+          {dark ? 'Light mode' : 'Dark mode'}
+        </Button>
       </div>
 
-      <h1 style={{ marginBottom: '2rem' }}>Button — layouts (brand / default)</h1>
+      <section className="app__section">
+        <h1 className="app__section-title">Button — hiérarchies</h1>
+        <div className="app__rows">
+          {hierarchies.map((hierarchy) => (
+            <div key={hierarchy} className="app__row">
+              <span className="app__label">{hierarchy}</span>
+              <Button hierarchy={hierarchy} size="default">label</Button>
+              <Button hierarchy={hierarchy} size="compact">label</Button>
+            </div>
+          ))}
+        </div>
+      </section>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '4rem' }}>
-        <Button hierarchy="brand" layout="text-only">label</Button>
-        <Button hierarchy="brand" layout="text-icon" icon={ArrowRight}>label</Button>
-        <Button hierarchy="brand" layout="icon-text" icon={ArrowRight}>label</Button>
-        <Button hierarchy="brand" layout="icon-only" icon={ArrowRight} aria-label="Suivant" />
-      </div>
+      <section className="app__section">
+        <h1 className="app__section-title">Button — layouts</h1>
+        <div className="app__row">
+          <Button hierarchy="brand" layout="text">label</Button>
+          <Button hierarchy="brand" layout="text-icon" icon={ArrowRight}>label</Button>
+          <Button hierarchy="brand" layout="icon-text" icon={ArrowRight}>label</Button>
+          <Button hierarchy="brand" layout="icon-only" icon={ArrowRight} aria-label="Suivant" />
+        </div>
+      </section>
 
-      <h1 style={{ marginBottom: '2rem' }}>Accordion</h1>
-      <Accordion items={accordionItems} defaultValue={['item-1']} />
+      <section className="app__section">
+        <h1 className="app__section-title">Accordion</h1>
+        <Accordion items={accordionItems} defaultValue={['item-1']} />
+      </section>
     </main>
   );
 }

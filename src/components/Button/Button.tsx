@@ -4,7 +4,7 @@ import './Button.css';
 
 export type ButtonHierarchy = 'default' | 'strong' | 'negative' | 'brand' | 'minimal';
 export type ButtonSize = 'default' | 'compact';
-export type ButtonLayout = 'text-only' | 'text-icon' | 'icon-text' | 'icon-only';
+export type ButtonLayout = 'text' | 'text-icon' | 'icon-text' | 'icon-only';
 
 type IconProp = React.ComponentType<React.ComponentProps<PhosphorIcon>>;
 
@@ -19,6 +19,12 @@ interface ButtonPropsBase {
   className?: string;
 }
 
+interface ButtonPropsText extends ButtonPropsBase {
+  layout?: 'text';
+  icon?: never;
+  'aria-label'?: string;
+}
+
 interface ButtonPropsWithIcon extends ButtonPropsBase {
   layout: 'text-icon' | 'icon-text';
   icon: IconProp;
@@ -31,18 +37,12 @@ interface ButtonPropsIconOnly extends ButtonPropsBase {
   'aria-label': string;
 }
 
-interface ButtonPropsTextOnly extends ButtonPropsBase {
-  layout?: 'text-only';
-  icon?: never;
-  'aria-label'?: string;
-}
-
-type ButtonProps = ButtonPropsTextOnly | ButtonPropsWithIcon | ButtonPropsIconOnly;
+type ButtonProps = ButtonPropsText | ButtonPropsWithIcon | ButtonPropsIconOnly;
 
 export function Button({
   hierarchy = 'default',
   size = 'default',
-  layout = 'text-only',
+  layout = 'text',
   loading = false,
   disabled = false,
   children,
@@ -51,9 +51,8 @@ export function Button({
   className,
   ...rest
 }: ButtonProps) {
-  const icon = 'icon' in rest ? rest.icon : undefined;
+  const IconComponent = ('icon' in rest ? rest.icon : undefined) as IconProp | undefined;
   const ariaLabel = 'aria-label' in rest ? rest['aria-label'] : undefined;
-  const IconComponent = icon as IconProp | undefined;
   const iconSize = size === 'compact' ? 14 : 16;
 
   const classes = [
