@@ -1,0 +1,25 @@
+.dual-theme {
+  display: flex;
+  min-height: 100vh;
+  margin: -1rem;
+}
+
+.dual-theme__pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 48px;
+  background: var(--color-bg-default);
+}
+
+.dual-theme__label {
+  font-size: 11px;
+  font-family: var(--font-family-sans);
+  color: var(--color-content-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  align-self: flex-start;
+}

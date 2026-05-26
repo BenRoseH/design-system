@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight } from '@phosphor-icons/react';
+import { ArrowRight } from 'lucide-react';
 import { Accordion } from './components/Accordion/Accordion';
 import { Button, type ButtonHierarchy } from './components/Button/Button';
 import './App.css';

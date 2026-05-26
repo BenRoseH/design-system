@@ -177,19 +177,52 @@
    LOADING
    ============================================================ */
 
+.btn--loading {
+  pointer-events: none;
+  cursor: default;
+}
+
 .btn--loading .btn__label,
 .btn--loading .btn__icon {
   visibility: hidden;
+}
+
+.btn--default.btn--loading {
+  color: var(--color-action-default-loading);
+  border-color: var(--color-action-default-loading);
+  border-width: var(--border-medium);
+}
+
+.btn--strong.btn--loading {
+  background: var(--color-action-default-pressed);
+}
+
+.btn--negative.btn--loading {
+  background: color-mix(in srgb, var(--color-status-negative-emphasized) 70%, black);
+}
+
+.btn--brand.btn--loading {
+  background: var(--color-action-default-pressed);
+}
+
+.btn--minimal.btn--loading {
+  color: var(--color-action-default-pressed);
 }
 
 .btn__spinner {
   position: absolute;
   width: 16px;
   height: 16px;
-  border: var(--border-default) solid transparent;
-  border-top-color: currentColor;
+  border: var(--border-medium) solid transparent;
+  border-top-color: var(--color-content-brand-primary);
   border-radius: 50%;
   animation: btn-spin 0.6s linear infinite;
+}
+
+.btn--strong .btn__spinner,
+.btn--negative .btn__spinner,
+.btn--brand .btn__spinner {
+  border-top-color: var(--color-bg-default);
 }
 
 @keyframes btn-spin {

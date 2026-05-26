@@ -1,4 +1,4 @@
-import type { Icon as PhosphorIcon } from '@phosphor-icons/react';
+import type { LucideIcon } from 'lucide-react';
 import { Button as BaseButton } from '@base-ui/react/button';
 import './Button.css';
 
@@ -6,7 +6,7 @@ export type ButtonHierarchy = 'default' | 'strong' | 'negative' | 'brand' | 'min
 export type ButtonSize = 'default' | 'compact';
 export type ButtonLayout = 'text' | 'text-icon' | 'icon-text' | 'icon-only';
 
-type IconProp = React.ComponentType<React.ComponentProps<PhosphorIcon>>;
+type IconProp = LucideIcon;
 
 interface ButtonPropsBase {
   hierarchy?: ButtonHierarchy;
@@ -69,8 +69,8 @@ export function Button({
   return (
     <BaseButton
       className={classes}
-      disabled={disabled || loading}
-      aria-disabled={disabled || loading}
+      disabled={disabled}
+      aria-disabled={disabled}
       aria-busy={loading}
       aria-label={layout === 'icon-only' ? ariaLabel : undefined}
       onClick={onClick}
@@ -78,7 +78,7 @@ export function Button({
     >
       {layout === 'icon-text' && IconComponent && (
         <span className="btn__icon" aria-hidden="true">
-          <IconComponent size={iconSize} color="currentColor" />
+          <IconComponent size={iconSize} color="currentColor" strokeWidth={2} />
         </span>
       )}
 
@@ -88,7 +88,7 @@ export function Button({
 
       {(layout === 'text-icon' || layout === 'icon-only') && IconComponent && (
         <span className="btn__icon" aria-hidden="true">
-          <IconComponent size={iconSize} color="currentColor" />
+          <IconComponent size={iconSize} color="currentColor" strokeWidth={2} />
         </span>
       )}
 
