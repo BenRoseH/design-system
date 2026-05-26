@@ -1,0 +1,24 @@
+/* ============================================================
+   DESIGN SYSTEM — SPACING TOKENS
+   Orange Business
+
+   Convention : --spacing-[taille]
+   Toutes les valeurs en px.
+   ============================================================ */
+
+:root {
+
+  --spacing-none:    0px;
+  --spacing-3xsmall: 2px;
+  --spacing-2xsmall: 4px;
+  --spacing-xsmall:  8px;
+  --spacing-small:   12px;
+  --spacing-medium:  16px;
+  --spacing-large:   24px;
+  --spacing-xlarge:  32px;
+  --spacing-2xlarge: 40px;
+  --spacing-3xlarge: 48px;
+  --spacing-4xlarge: 56px;
+  --spacing-5xlarge: 64px;
+
+}

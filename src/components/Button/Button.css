@@ -1,0 +1,197 @@
+/* ============================================================
+   BASE
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  position: relative;
+  height: 40px;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.btn[aria-disabled="true"],
+.btn:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: default;
+}
+
+/* ============================================================
+   SIZE
+   ============================================================ */
+
+.btn--compact {
+  height: 32px;
+}
+
+/* ============================================================
+   HIERARCHY — default
+   transparent bg, 1px border, text+border = --color-action-default-enabled
+   ============================================================ */
+
+.btn--default {
+  color: var(--color-action-default-enabled);
+  border-color: var(--color-action-default-enabled);
+  background: transparent;
+}
+
+.btn--default:hover:not([aria-disabled="true"]) {
+  color: var(--color-action-default-pressed);
+  border-color: var(--color-action-default-pressed);
+}
+
+.btn--default:active:not([aria-disabled="true"]) {
+  color: var(--color-action-default-pressed);
+  border-color: var(--color-action-default-pressed);
+}
+
+/* ============================================================
+   HIERARCHY — strong
+   filled bg = --color-action-default-enabled, white text
+   ============================================================ */
+
+.btn--strong {
+  color: var(--color-bg-default);
+  background: var(--color-action-default-enabled);
+  border-color: transparent;
+}
+
+.btn--strong:hover:not([aria-disabled="true"]) {
+  background: var(--color-action-default-pressed);
+}
+
+.btn--strong:active:not([aria-disabled="true"]) {
+  background: var(--color-action-default-pressed);
+}
+
+/* ============================================================
+   HIERARCHY — negative
+   filled bg = --color-status-negative-emphasized, white text
+   ============================================================ */
+
+.btn--negative {
+  color: var(--color-bg-default);
+  background: var(--color-status-negative-emphasized);
+  border-color: transparent;
+}
+
+.btn--negative:hover:not([aria-disabled="true"]) {
+  background: color-mix(in srgb, var(--color-status-negative-emphasized) 85%, black);
+}
+
+.btn--negative:active:not([aria-disabled="true"]) {
+  background: color-mix(in srgb, var(--color-status-negative-emphasized) 75%, black);
+}
+
+/* ============================================================
+   HIERARCHY — brand
+   filled bg = --color-content-brand-primary, white text
+   ============================================================ */
+
+.btn--brand {
+  color: var(--color-bg-default);
+  background: var(--color-content-brand-primary);
+  border-color: transparent;
+}
+
+.btn--brand:hover:not([aria-disabled="true"]) {
+  background: var(--color-action-default-pressed);
+}
+
+.btn--brand:active:not([aria-disabled="true"]) {
+  background: var(--color-action-default-pressed);
+}
+
+/* ============================================================
+   HIERARCHY — minimal
+   no bg, no border, text = --color-action-default-enabled
+   ============================================================ */
+
+.btn--minimal {
+  color: var(--color-action-default-enabled);
+  background: transparent;
+  border-color: transparent;
+}
+
+.btn--minimal:hover:not([aria-disabled="true"]) {
+  color: var(--color-action-default-pressed);
+}
+
+.btn--minimal:active:not([aria-disabled="true"]) {
+  color: var(--color-action-default-pressed);
+}
+
+/* ============================================================
+   LAYOUT — icon-only: carré, pas de padding
+   ============================================================ */
+
+.btn--icon-only {
+  padding: 0;
+  width: 40px;
+}
+
+.btn--compact.btn--icon-only {
+  width: 32px;
+}
+
+/* ============================================================
+   LAYOUT — text-only: pas d'icône, padding horizontal standard
+   ============================================================ */
+
+.btn--text-only {
+  gap: 0;
+}
+
+/* ============================================================
+   INNER ELEMENTS
+   ============================================================ */
+
+.btn__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+/* ============================================================
+   LOADING STATE
+   label hidden, spinner shown
+   ============================================================ */
+
+.btn--loading .btn__label,
+.btn--loading .btn__icon {
+  visibility: hidden;
+}
+
+.btn__spinner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: btn-spin 0.6s linear infinite;
+}
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

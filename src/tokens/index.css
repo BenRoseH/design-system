@@ -1,0 +1,12 @@
+/* ============================================================
+   DESIGN SYSTEM — INDEX
+   Orange Business
+
+   Point d'entrée unique pour tous les tokens.
+   Importer ce fichier dans main.tsx uniquement.
+   ============================================================ */
+
+@import './colors.css';
+@import './typography.css';
+@import './spacing.css';
+@import './shape.css';

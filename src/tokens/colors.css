@@ -1,0 +1,138 @@
+/* ============================================================
+   DESIGN SYSTEM — COLOR TOKENS
+   Orange Business
+   
+   Structure :
+   - :root        → mode light (défaut)
+   - [data-theme="dark"]  → overrides dark mode
+   
+   Convention de nommage :
+   --color-[catégorie]-[sous-catégorie]-[variante]
+   ============================================================ */
+
+
+/* ============================================================
+   LIGHT MODE (défaut)
+   ============================================================ */
+
+:root {
+
+  /* --- BG --- */
+  --color-bg-default:              rgba(255, 255, 255, 1);
+  --color-bg-secondary:            rgba(244, 244, 244, 1);
+  --color-bg-tertiary:             rgba(249, 245, 240, 1);
+
+  /* --- CONTENT --- */
+  --color-content-default:         rgba(0, 0, 0, 1);
+  --color-content-muted:           rgba(0, 0, 0, 0.68);
+  --color-content-disable:         rgba(0, 0, 0, 0.20);
+  --color-content-brand-primary:   rgba(241, 94, 0, 1);
+
+  /* --- ACTION / DEFAULT --- */
+  --color-action-default-enabled:  rgba(0, 0, 0, 1);
+  --color-action-default-hover:    rgba(0, 0, 0, 0.68);
+  --color-action-default-pressed:  rgba(241, 94, 0, 1);
+  --color-action-default-loading:  rgba(241, 94, 0, 1);
+  --color-action-default-disable:  rgba(0, 0, 0, 0.20);
+  --color-action-default-focus:    rgba(0, 0, 0, 0.68);
+  --color-action-default-selected: rgba(241, 94, 0, 1);
+  --color-action-default-visited:  rgba(91, 47, 152, 1);
+
+  /* --- ACTION / READ-ONLY --- */
+  --color-action-read-only-primary:   rgba(0, 0, 0, 0.68);
+  --color-action-read-only-secondary: rgba(0, 0, 0, 0.20);
+
+  /* --- BORDER --- */
+  --color-border-minimal:          rgba(0, 0, 0, 0.04);
+  --color-border-muted:            rgba(0, 0, 0, 0.12);
+  --color-border-default:          rgba(0, 0, 0, 0.20);
+  --color-border-emphasized:       rgba(0, 0, 0, 0.1);
+  --color-border-focus:            rgba(0, 0, 0, 1);
+  --color-border-focus-inset:      rgba(0, 0, 0, 0.1);
+  --color-border-brand-primary:    rgba(255, 121, 0, 1);
+
+  /* --- STATUS / POSITIVE --- */
+  --color-status-positive-muted:      rgba(61, 227, 90, 0.12);
+  --color-status-positive-emphasized: rgba(19, 129, 38, 1);
+
+  /* --- STATUS / INFO --- */
+  --color-status-info-muted:          rgba(38, 178, 255, 0.08);
+  --color-status-info-emphasized:     rgba(0, 115, 179, 1);
+
+  /* --- STATUS / WARNING --- */
+  --color-status-warning-muted:       rgba(255, 208, 0, 0.16);
+  --color-status-warning-emphasized:  rgba(255, 208, 0, 1);
+
+  /* --- STATUS / NEGATIVE --- */
+  --color-status-negative-muted:      rgba(219, 0, 2, 0.08);
+  --color-status-negative-emphasized: rgba(219, 0, 2, 1);
+
+  /* --- STATUS / ACCENT --- */
+  --color-status-accent-muted:        rgba(189, 121, 60, 0.08);
+  --color-status-accent-emphasized:   rgba(255, 121, 0, 1);
+
+}
+
+
+/* ============================================================
+   DARK MODE
+   Usage : <html data-theme="dark"> ou <body data-theme="dark">
+   ============================================================ */
+
+[data-theme="dark"] {
+
+  /* --- BG --- */
+  --color-bg-default:              rgba(20, 20, 20, 1);
+  --color-bg-secondary:            rgba(31, 31, 31, 1);
+  --color-bg-tertiary:             rgba(35, 33, 26, 1);
+
+  /* --- CONTENT --- */
+  --color-content-default:         rgba(238, 238, 238, 1);
+  --color-content-muted:           rgba(255, 255, 255, 0.64);
+  --color-content-disable:         rgba(255, 255, 255, 0.20);
+  --color-content-brand-primary:   rgba(255, 121, 0, 1);
+
+  /* --- ACTION / DEFAULT --- */
+  --color-action-default-enabled:  rgba(238, 238, 238, 1);
+  --color-action-default-hover:    rgba(255, 255, 255, 0.64);
+  --color-action-default-pressed:  rgba(255, 121, 0, 1);
+  --color-action-default-loading:  rgba(255, 121, 0, 1);
+  --color-action-default-disable:  rgba(255, 255, 255, 0.20);
+  --color-action-default-focus:    rgba(255, 255, 255, 0.64);
+  --color-action-default-selected: rgba(255, 121, 0, 1);
+  --color-action-default-visited:  rgba(168, 133, 216, 1);
+
+  /* --- ACTION / READ-ONLY --- */
+  --color-action-read-only-primary:   rgba(255, 255, 255, 0.64);
+  --color-action-read-only-secondary: rgba(255, 255, 255, 0.20);
+
+  /* --- BORDER --- */
+  --color-border-minimal:          rgba(255, 255, 255, 0.04);
+  --color-border-muted:            rgba(255, 255, 255, 0.12);
+  --color-border-default:          rgba(255, 255, 255, 0.20);
+  --color-border-emphasized:       rgba(238, 238, 238, 1);
+  --color-border-focus:            rgba(238, 238, 238, 1);
+  --color-border-focus-inset:      rgba(20, 20, 20, 1);
+  --color-border-brand-primary:    rgba(255, 121, 0, 1);
+
+  /* --- STATUS / POSITIVE --- */
+  --color-status-positive-muted:      rgba(14, 98, 29, 0.64);
+  --color-status-positive-emphasized: rgba(148, 240, 164, 1);
+
+  /* --- STATUS / INFO --- */
+  --color-status-info-muted:          rgba(0, 89, 138, 0.52);
+  --color-status-info-emphasized:     rgba(138, 213, 255, 1);
+
+  /* --- STATUS / WARNING --- */
+  --color-status-warning-muted:       rgba(102, 81, 0, 0.48);
+  --color-status-warning-emphasized:  rgba(255, 226, 112, 1);
+
+  /* --- STATUS / NEGATIVE --- */
+  --color-status-negative-muted:      rgba(219, 0, 2, 0.32);
+  --color-status-negative-emphasized: rgba(255, 128, 129, 1);
+
+  /* --- STATUS / ACCENT --- */
+  --color-status-accent-muted:        rgba(104, 93, 80, 0.4);
+  --color-status-accent-emphasized:   rgba(255, 121, 0, 1);
+
+}

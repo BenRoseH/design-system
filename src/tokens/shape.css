@@ -1,0 +1,29 @@
+/* ============================================================
+   DESIGN SYSTEM — SHAPE TOKENS
+   Orange Business
+
+   Contient : radius et border-width
+   Toutes les valeurs en px.
+   ============================================================ */
+
+:root {
+
+  /* --- RADIUS --- */
+  --radius-none:    0px;
+  --radius-default: 0px;
+  --radius-small:   4px;
+  --radius-medium:  8px;
+  --radius-large:   12px;
+  --radius-pill:    2000px;
+
+  /* --- BORDER WIDTH --- */
+  --border-none:        0px;
+  --border-default:     1px;
+  --border-thin:        1px;
+  --border-medium:      2px;
+  --border-thick:       3px;
+  --border-thicker:     4px;
+  --border-focus:       5px;
+  --border-focus-inset: 2px;
+
+}
