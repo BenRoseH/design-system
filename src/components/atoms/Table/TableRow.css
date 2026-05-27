@@ -1,0 +1,28 @@
+@import '../../../tokens/index.css';
+
+.table-row {
+  border-bottom: var(--border-default) solid var(--color-border-minimal);
+  background: transparent;
+  transition: background-color 0.15s ease;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-row--interactive {
+  cursor: pointer;
+}
+
+.table-row--interactive:hover {
+  background: var(--color-surface-secondary);
+  --color-btn-minimal-hover-bg: var(--color-surface-primary);
+}
+
+.table-row--selected {
+  background: var(--color-status-accent-muted);
+}
+
+.table-row--selected.table-row--interactive:hover {
+  background: var(--color-status-accent-muted);
+}

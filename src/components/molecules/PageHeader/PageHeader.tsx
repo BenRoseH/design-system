@@ -22,7 +22,7 @@ export function PageHeader({ title, description, primaryAction, secondaryAction 
   return (
     <div className="page-header">
       <div className="page-header__content">
-        <Text as="h1" variant="heading-xlarge">{title}</Text>
+        <Text as="h1" variant="heading-large">{title}</Text>
         {description && (
           <Text as="p" variant="body-large-default" color="muted">{description}</Text>
         )}

@@ -1,0 +1,25 @@
+@import '../../../tokens/index.css';
+
+.table-cell {
+  padding: var(--spacing-small) var(--spacing-medium);
+  text-align: left;
+  border-right: var(--border-default) solid var(--color-border-minimal);
+}
+
+.table-cell:last-child {
+  border-right: none;
+}
+
+.table-cell--center {
+  text-align: center;
+}
+
+.table-cell--right {
+  text-align: right;
+}
+
+.table-cell__with-avatar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xsmall);
+}

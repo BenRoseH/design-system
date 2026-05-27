@@ -1,0 +1,6 @@
+@import '../../../tokens/index.css';
+
+.table-header-row {
+  background: var(--color-bg-secondary);
+  border-bottom: var(--border-medium) solid var(--color-border-minimal);
+}

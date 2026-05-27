@@ -1,7 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Home, Users, Settings, BarChart2, FileText, Bell, Plus, Download } from 'lucide-react';
+import { Home, Users, Settings, BarChart2, FileText, Bell, Plus, Download, MoreHorizontal } from 'lucide-react';
 import { GlobalLayout } from './GlobalLayout';
 import { PageHeader } from '../../molecules/PageHeader/PageHeader';
+import { TableHeaderCell } from '../../atoms/Table/TableHeaderCell';
+import { TableCell } from '../../atoms/Table/TableCell';
+import { TableRow } from '../../atoms/Table/TableRow';
+import { TableHeaderRow } from '../../atoms/Table/TableHeaderRow';
+import { Tag } from '../../atoms/Tag/Tag';
+import { Button } from '../../atoms/Button/Button';
+import { Avatar } from '../../atoms/Avatar/Avatar';
+import { Select } from '../../atoms/Select/Select';
+import { MultiSelect } from '../../atoms/MultiSelect/MultiSelect';
+import '../../atoms/Table/Table.css';
 
 const meta = {
   title: 'Organisms/GlobalLayout',
@@ -39,6 +49,72 @@ const user = {
   company: 'Leroy Merlin',
 };
 
+const tableUsers = [
+  { id: 1, name: 'Harry Potter', email: 'harry@leroy.com', company: 'Leroy Merlin', status: 'positive' as const, statusLabel: 'Actif' },
+  { id: 2, name: 'Hermione Granger', email: 'hermione@leroy.com', company: 'Leroy Merlin', status: 'neutral' as const, statusLabel: 'Inactif' },
+  { id: 3, name: 'Ron Weasley', email: 'ron@leroy.com', company: 'Leroy Merlin', status: 'warning' as const, statusLabel: 'En attente' },
+];
+
+const UsersTable = () => (
+  <div className="table-container">
+    <div className="table-toolbar">
+      <MultiSelect
+        size="compact"
+        label="Statut"
+        options={[{ value: 'active', label: 'Actif' }, { value: 'inactive', label: 'Inactif' }, { value: 'pending', label: 'En attente' }]}
+      />
+      <Select
+        size="compact"
+        options={[{ value: 'all', label: 'Toutes les entreprises' }, { value: 'leroy', label: 'Leroy Merlin' }, { value: 'adeo', label: 'Adeo' }]}
+        defaultValue="all"
+      />
+      <Select
+        size="compact"
+        options={[{ value: 'all', label: 'Tous les rôles' }, { value: 'admin', label: 'Administrateur' }, { value: 'user', label: 'Utilisateur' }]}
+        defaultValue="all"
+      />
+    </div>
+    <table>
+      <thead>
+        <TableHeaderRow>
+          <TableHeaderCell>Nom</TableHeaderCell>
+          <TableHeaderCell>Email</TableHeaderCell>
+          <TableHeaderCell>Entreprise</TableHeaderCell>
+          <TableHeaderCell>Statut</TableHeaderCell>
+          <th style={{ width: 48 }} />
+        </TableHeaderRow>
+      </thead>
+      <tbody>
+        {tableUsers.map((u) => (
+          <TableRow key={u.id} onClick={() => {}}>
+            <TableCell>
+              <div className="table-cell__with-avatar">
+                <Avatar fallback={u.name.split(' ').map(n => n[0]).join('')} size="compact" />
+                {u.name}
+              </div>
+            </TableCell>
+            <TableCell>{u.email}</TableCell>
+            <TableCell>{u.company}</TableCell>
+            <TableCell>
+              <Tag label={u.statusLabel} status={u.status} size="compact" showDot />
+            </TableCell>
+            <TableCell align="right">
+              <Button
+                hierarchy="minimal"
+                layout="icon-only"
+                size="compact"
+                icon={MoreHorizontal}
+                aria-label="Plus d'actions"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </TableCell>
+          </TableRow>
+        ))}
+      </tbody>
+    </table>
+  </div>
+);
+
 export const Default: Story = {
   render: () => (
     <GlobalLayout sections={sections} user={user}>
@@ -46,6 +122,7 @@ export const Default: Story = {
         title="Utilisateurs"
         description="Créez et modifiez les utilisateurs de Live Intelligence."
       />
+      <UsersTable />
     </GlobalLayout>
   ),
 };
@@ -83,6 +160,7 @@ export const Playground: Story = {
           onClick: () => {},
         } : undefined}
       />
+      <UsersTable />
     </GlobalLayout>
   ),
 };

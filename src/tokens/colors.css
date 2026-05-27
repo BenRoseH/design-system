@@ -72,6 +72,11 @@
   --color-status-accent-muted:        rgba(189, 121, 60, 0.08);
   --color-status-accent-emphasized:   rgba(255, 121, 0, 1);
 
+  /* --- SURFACE --- */
+  --color-surface-primary:            rgba(255, 255, 255, 1);
+  --color-surface-secondary:          rgba(0, 0, 0, 0.04);
+  --color-surface-tertiary:           rgba(189, 121, 60, 0.08);
+
 }
 
 
@@ -136,5 +141,10 @@
   /* --- STATUS / ACCENT --- */
   --color-status-accent-muted:        rgba(104, 93, 80, 0.4);
   --color-status-accent-emphasized:   rgba(255, 121, 0, 1);
+
+  /* --- SURFACE --- */
+  --color-surface-primary:            rgba(255, 255, 255, 0.04);
+  --color-surface-secondary:          rgba(255, 255, 255, 0.08);
+  --color-surface-tertiary:           rgba(104, 93, 80, 0.4);
 
 }

@@ -1,32 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
-import { Accordion } from './components/atoms/Accordion/Accordion';
+import { useUsers } from './hooks/useUsers';
+
 import { Button, type ButtonHierarchy } from './components/atoms/Button/Button';
 import './App.css';
-
-const accordionItems = [
-  {
-    value: 'item-1',
-    trigger: "Qu'est-ce que Base UI ?",
-    panel: "Base UI est une bibliothèque de composants headless pour React. Elle fournit des comportements accessibles sans imposer de styles, ce qui vous laisse un contrôle total sur l'apparence.",
-  },
-  {
-    value: 'item-2',
-    trigger: 'Comment utiliser les tokens CSS ?',
-    panel: 'Les tokens sont définis comme des custom properties CSS dans tokens.css. Importez ce fichier une seule fois dans main.tsx et utilisez-les partout avec var(--nom-du-token).',
-  },
-  {
-    value: 'item-3',
-    trigger: 'Item désactivé',
-    panel: "Ce contenu n'est pas accessible car l'item est désactivé.",
-    disabled: true,
-  },
-];
 
 const hierarchies: ButtonHierarchy[] = ['default', 'strong', 'negative', 'brand', 'minimal'];
 
 function App() {
   const [dark, setDark] = useState(false);
+  const { data: users, isLoading, error } = useUsers();
+
+  useEffect(() => {
+    console.log('[useUsers] loading:', isLoading, '| error:', error, '| data:', users);
+  }, [users, isLoading, error]);
 
   function toggleTheme() {
     const next = !dark;
@@ -65,10 +52,6 @@ function App() {
         </div>
       </section>
 
-      <section className="app__section">
-        <h1 className="app__section-title">Accordion</h1>
-        <Accordion items={accordionItems} defaultValue={['item-1']} />
-      </section>
     </main>
   );
 }

@@ -1,0 +1,55 @@
+@import '../../../tokens/index.css';
+
+.table-header-cell {
+  padding: var(--spacing-small) var(--spacing-medium);
+  white-space: nowrap;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  border-right: var(--border-default) solid var(--color-border-minimal);
+}
+
+.table-header-cell:last-child {
+  border-right: none;
+}
+
+.table-header-cell:hover {
+  background: var(--color-bg-secondary);
+}
+
+.table-header-cell--center {
+  text-align: center;
+}
+
+.table-header-cell--right {
+  text-align: right;
+}
+
+.table-header-cell__content {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2xsmall);
+  width: 100%;
+}
+
+.table-header-cell--center .table-header-cell__content {
+  justify-content: center;
+}
+
+.table-header-cell--right .table-header-cell__content {
+  justify-content: flex-end;
+}
+
+.table-header-cell__sort-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: auto;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  color: var(--color-content-muted);
+}
+
+.table-header-cell:hover .table-header-cell__sort-icon {
+  opacity: 1;
+}

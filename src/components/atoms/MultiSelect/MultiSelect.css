@@ -1,0 +1,198 @@
+@import '../../../tokens/index.css';
+
+/* ============================================================
+   WRAPPER
+   ============================================================ */
+
+.multiselect {
+  display: inline-flex;
+}
+
+/* ============================================================
+   TRIGGER
+   ============================================================ */
+
+.multiselect__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xsmall);
+  height: 40px;
+  padding: var(--spacing-small) var(--spacing-medium);
+  border-radius: var(--radius-medium);
+  border: var(--border-default) solid var(--color-border-default);
+  background: var(--color-bg-default);
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  color: var(--color-action-default-enabled);
+  transition: border-color 0.15s ease;
+}
+
+.multiselect__trigger--compact {
+  height: 32px;
+  padding: var(--spacing-xsmall) var(--spacing-medium);
+}
+
+.multiselect__trigger:hover:not([data-disabled]) {
+  border-color: var(--color-action-default-hover);
+}
+
+.multiselect__trigger[data-open] {
+  border-color: var(--color-action-default-enabled);
+}
+
+.multiselect__trigger:focus-visible {
+  outline: var(--border-focus) solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.multiselect__trigger[data-disabled] {
+  color: var(--color-action-default-disable);
+  border-color: var(--color-border-default);
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ============================================================
+   VALUE SIZER (ghost trick for auto-width)
+   ============================================================ */
+
+.multiselect__value-sizer {
+  display: inline-grid;
+}
+
+.multiselect__value-sizer > * {
+  grid-area: 1 / 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.multiselect__sizer-ghost {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ============================================================
+   COUNT BADGE
+   ============================================================ */
+
+.multiselect__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-medium);
+  background: var(--color-status-accent-muted);
+  color: var(--color-content-brand-primary);
+}
+
+/* ============================================================
+   ICON (chevron)
+   ============================================================ */
+
+.multiselect__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--color-content-muted);
+  transition: transform 0.15s ease;
+}
+
+.multiselect__trigger[data-open] .multiselect__icon {
+  transform: rotate(180deg);
+}
+
+/* ============================================================
+   POPUP
+   ============================================================ */
+
+.multiselect__popup {
+  background: var(--color-bg-default);
+  border: var(--border-default) solid var(--color-border-muted);
+  border-radius: var(--radius-medium);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  padding: var(--spacing-2xsmall);
+  min-width: 160px;
+  z-index: 100;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.multiselect__popup[data-open] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   LIST
+   ============================================================ */
+
+.multiselect__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xsmall);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================================================
+   ITEM
+   ============================================================ */
+
+.multiselect__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xsmall);
+  padding: var(--spacing-xsmall) var(--spacing-small);
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+.multiselect__item:hover:not(.multiselect__item--disabled) {
+  background: var(--color-bg-secondary);
+}
+
+.multiselect__item:focus-visible {
+  outline: var(--border-focus) solid var(--color-border-focus);
+  outline-offset: -2px;
+}
+
+.multiselect__item--selected {
+  color: var(--color-content-brand-primary);
+}
+
+.multiselect__item--disabled {
+  color: var(--color-content-disable);
+  pointer-events: none;
+  cursor: default;
+}
+
+/* ============================================================
+   CHECKBOX
+   ============================================================ */
+
+.multiselect__checkbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-small);
+  border: var(--border-default) solid var(--color-border-default);
+  background: var(--color-bg-default);
+  transition: background 0.1s ease, border-color 0.1s ease;
+}
+
+.multiselect__checkbox--checked {
+  background: var(--color-action-default-enabled);
+  border-color: var(--color-action-default-enabled);
+  color: var(--color-bg-default);
+}

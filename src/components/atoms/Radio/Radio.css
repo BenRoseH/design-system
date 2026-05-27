@@ -1,0 +1,102 @@
+/* ============================================================
+   Radio & RadioGroup
+   ============================================================ */
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-group__label {
+  display: block;
+  margin-bottom: var(--spacing-xsmall);
+}
+
+/* --- Group items container --- */
+
+.radio-group__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xsmall);
+}
+
+.radio-group__items--horizontal {
+  flex-direction: row;
+  gap: var(--spacing-medium);
+}
+
+/* --- Item (label wrapper) --- */
+
+.radio__item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--spacing-xsmall);
+  cursor: pointer;
+}
+
+.radio__item:has(.radio__root[data-disabled]) {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* --- Root (Radio.Root) --- */
+
+.radio__root {
+  display: flex;
+  flex-shrink: 0;
+}
+
+/* --- Indicator (the circle) --- */
+
+.radio__indicator {
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-pill);
+  border: var(--border-medium) solid var(--color-border-default);
+  background-color: var(--color-bg-default);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+/* Hover */
+.radio__item:hover .radio__root[data-unchecked] .radio__indicator {
+  border-color: var(--color-action-default-hover);
+}
+
+/* Checked */
+.radio__indicator[data-checked] {
+  border-color: var(--color-content-brand-primary);
+}
+
+.radio__indicator[data-checked]::after {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-content-brand-primary);
+}
+
+/* Focus-visible */
+.radio__root:focus-visible .radio__indicator {
+  outline: var(--border-focus) solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* Disabled indicator */
+.radio__root[data-disabled] .radio__indicator {
+  border-color: var(--color-border-default);
+  background-color: var(--color-bg-secondary);
+}
+
+/* --- Label wrapper --- */
+
+.radio__label-wrapper {
+  display: flex;
+  flex-direction: column;
+}
