@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "lib": ["ES6"],
+    "strict": false,
+    "outDir": "dist",
+    "rootDir": "src/plugin"
+  },
+  "include": ["src/plugin"]
+}
