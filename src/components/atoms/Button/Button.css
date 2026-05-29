@@ -147,13 +147,13 @@
 
 .btn--minimal {
   color: var(--color-action-default-enabled);
-  background: transparent;
+  background: var(--btn-minimal-bg, transparent);
   border-color: transparent;
 }
 
 .btn--minimal:hover:not([aria-disabled="true"]) {
   color: var(--color-action-default-hover);
-  background: var(--color-btn-minimal-hover-bg, var(--color-surface-primary));
+  background: var(--color-btn-minimal-hover-bg, var(--color-surface-secondary));
 }
 
 .btn--minimal:active:not([aria-disabled="true"]) {

@@ -1,0 +1,136 @@
+@import '../../../tokens/index.css';
+
+/* ============================================================
+   BACKDROP
+   ============================================================ */
+
+.dialog__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 300;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.dialog__backdrop[data-starting-style],
+.dialog__backdrop[data-ending-style] {
+  opacity: 0;
+}
+
+/* ============================================================
+   POPUP
+   ============================================================ */
+
+.dialog__popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 301;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-large) 0;
+  gap: var(--spacing-large);
+
+  width: 680px;
+  background: var(--color-bg-default);
+  border: var(--border-default) solid var(--color-border-muted);
+  border-radius: var(--radius-medium);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+
+  opacity: 1;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.dialog__popup[data-starting-style] {
+  opacity: 0;
+  transform: translate(-50%, calc(-50% + 8px));
+}
+
+.dialog__popup[data-ending-style] {
+  opacity: 0;
+  transform: translate(-50%, calc(-50% + 8px));
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.dialog__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-small);
+  padding: 0 var(--spacing-large);
+}
+
+.dialog__header-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-medium);
+  flex-shrink: 0;
+}
+
+.dialog__header-icon--destructive {
+  background: var(--color-status-negative-muted);
+  color: var(--color-status-negative-emphasized);
+}
+
+.dialog__title {
+  flex: 1;
+  font-family: var(--font-family-sans);
+  font-size: var(--typography-heading-medium-font-size);
+  line-height: var(--typography-heading-medium-line-height);
+  font-weight: var(--typography-heading-medium-font-weight);
+  letter-spacing: var(--typography-heading-medium-letter-spacing);
+  color: var(--color-content-default);
+  margin: 0;
+}
+
+.dialog__header-close {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   BODY
+   ============================================================ */
+
+.dialog__body {
+  padding: 0 var(--spacing-large);
+}
+
+.dialog__description {
+  font-family: var(--font-family-sans);
+  font-size: var(--typography-body-large-default-font-size);
+  line-height: var(--typography-body-large-default-line-height);
+  font-weight: var(--typography-body-large-default-font-weight);
+  letter-spacing: var(--typography-body-large-default-letter-spacing);
+  color: var(--color-content-default);
+  margin: 0;
+}
+
+/* ============================================================
+   DIVIDER
+   ============================================================ */
+
+.dialog__divider {
+  height: 1px;
+  background: var(--color-border-muted);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.dialog__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-large);
+}

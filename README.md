@@ -71,3 +71,32 @@ export default defineConfig([
   },
 ])
 ```
+
+---
+
+## Figma Plugin — DS Storybook Sync
+
+The plugin syncs Storybook stories into Figma as native components with screenshot fills.
+
+### Install in Figma (development mode)
+
+1. Open Figma Desktop
+2. **Menu → Plugins → Development → Import plugin from manifest…**
+3. Select `figma-plugin/manifest.json`
+4. The plugin appears under **Plugins → Development → DS Storybook Sync**
+
+### Build
+
+```bash
+cd figma-plugin
+npm install
+npm run build     # compiles controller.ts + ui.ts → dist/
+```
+
+### Usage
+
+1. Start Storybook: `npm run storybook` (must be running on `localhost:6006`)
+2. Open the plugin in Figma
+3. Click **Fetch Stories** — loads the component list from the Storybook index
+4. Select a component from the dropdown
+5. Click **Sync to Figma** — captures each story and creates Figma components in a "Storybook Components" page

@@ -1,0 +1,119 @@
+@import '../../../tokens/index.css';
+
+/* ============================================================
+   TRIGGER
+   ============================================================ */
+
+.context-menu__trigger {
+  display: block;
+}
+
+/* ============================================================
+   POPUP
+   ============================================================ */
+
+.context-menu__popup {
+  background: var(--color-bg-default);
+  border: var(--border-default) solid var(--color-border-muted);
+  border-radius: var(--radius-medium);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  padding: var(--spacing-3xsmall);
+  min-width: 200px;
+  z-index: 200;
+  overflow: hidden;
+  box-sizing: border-box;
+  transform-origin: var(--transform-origin);
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.context-menu__popup[data-open] {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ============================================================
+   ITEM
+   ============================================================ */
+
+.context-menu__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xsmall);
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--spacing-xsmall) var(--spacing-small);
+  border-radius: var(--radius-small);
+  border: none;
+  background: none;
+  text-align: left;
+  font-family: inherit;
+  color: var(--color-content-default);
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+.context-menu__item:hover:not(.context-menu__item--disabled),
+.context-menu__item[data-highlighted]:not(.context-menu__item--disabled) {
+  background: var(--color-bg-secondary);
+}
+
+/* ============================================================
+   ITEM — DESTRUCTIVE
+   ============================================================ */
+
+.context-menu__item--destructive {
+  color: var(--color-status-negative-emphasized);
+}
+
+.context-menu__item--destructive:hover:not(.context-menu__item--disabled),
+.context-menu__item--destructive[data-highlighted]:not(.context-menu__item--disabled) {
+  background: var(--color-status-negative-muted);
+}
+
+/* ============================================================
+   ITEM — DISABLED
+   ============================================================ */
+
+.context-menu__item--disabled {
+  color: var(--color-content-disable);
+  pointer-events: none;
+  cursor: default;
+}
+
+/* ============================================================
+   ITEM ICON + CHEVRON
+   ============================================================ */
+
+.context-menu__item-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.context-menu__item-chevron {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* ============================================================
+   SEPARATOR
+   ============================================================ */
+
+.context-menu__separator {
+  height: 1px;
+  background: var(--color-border-muted);
+  margin: var(--spacing-3xsmall) 0;
+}
+
+/* ============================================================
+   GROUP
+   ============================================================ */
+
+.context-menu__group-label {
+  padding: var(--spacing-3xsmall) var(--spacing-small);
+}

@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 
 const meta = {
-  title: 'Foundation/Icons',
+  title: 'Atoms/Icons',
   parameters: {
     controls: { disable: true },
   },

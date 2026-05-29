@@ -16,7 +16,8 @@
 
 .table-row--interactive:hover {
   background: var(--color-surface-secondary);
-  --color-btn-minimal-hover-bg: var(--color-surface-primary);
+  --btn-minimal-bg: var(--color-bg-default);
+  --color-btn-minimal-hover-bg: var(--color-bg-default);
 }
 
 .table-row--selected {

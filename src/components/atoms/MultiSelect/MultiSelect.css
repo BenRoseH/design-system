@@ -55,30 +55,11 @@
 }
 
 /* ============================================================
-   VALUE SIZER (ghost trick for auto-width)
-   ============================================================ */
-
-.multiselect__value-sizer {
-  display: inline-grid;
-}
-
-.multiselect__value-sizer > * {
-  grid-area: 1 / 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.multiselect__sizer-ghost {
-  visibility: hidden;
-  pointer-events: none;
-}
-
-/* ============================================================
    COUNT BADGE
    ============================================================ */
 
 .multiselect__count {
+  margin-left: var(--spacing-small);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -87,6 +68,21 @@
   border-radius: var(--radius-medium);
   background: var(--color-status-accent-muted);
   color: var(--color-content-brand-primary);
+}
+
+.multiselect__count--hidden {
+  visibility: hidden;
+}
+
+/* ============================================================
+   PREFIX ICON
+   ============================================================ */
+
+.multiselect__prefix-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--color-content-muted);
 }
 
 /* ============================================================

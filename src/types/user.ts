@@ -3,6 +3,7 @@ export type User = {
   created_at: string
   first_name: string
   last_name: string
+  email: string
   color_decoration: string
   language: string
   statut: string

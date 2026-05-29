@@ -1,0 +1,107 @@
+@import '../../../tokens/index.css';
+
+/* ============================================================
+   WRAPPER
+   ============================================================ */
+
+.switch-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xsmall);
+  cursor: pointer;
+}
+
+.switch-wrapper--disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ============================================================
+   TRACK (Switch.Root)
+   ============================================================ */
+
+.switch__track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 24px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-border-default);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.switch__track:focus-visible {
+  outline: var(--border-focus) solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.switch__track:hover:not([data-disabled]) {
+  background-color: var(--color-action-default-hover);
+}
+
+.switch__track[data-checked]:not([data-disabled]) {
+  background-color: var(--color-content-brand-primary);
+}
+
+.switch__track[data-checked]:hover:not([data-disabled]) {
+  background-color: color-mix(in srgb, var(--color-content-brand-primary) 85%, black);
+}
+
+.switch__track[data-disabled] {
+  background-color: var(--color-border-muted);
+  pointer-events: none;
+}
+
+/* ============================================================
+   THUMB (Switch.Thumb)
+   ============================================================ */
+
+.switch__thumb {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-bg-default);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transform: translateY(-50%) translateX(2px);
+  transition: transform 0.2s ease;
+}
+
+.switch__track[data-checked] .switch__thumb {
+  transform: translateY(-50%) translateX(22px);
+}
+
+/* ============================================================
+   SIZE — sm
+   ============================================================ */
+
+.switch-wrapper--sm .switch__track {
+  width: 36px;
+  height: 20px;
+}
+
+.switch-wrapper--sm .switch__thumb {
+  width: 16px;
+  height: 16px;
+}
+
+.switch-wrapper--sm .switch__track[data-checked] .switch__thumb {
+  transform: translateY(-50%) translateX(18px);
+}
+
+/* ============================================================
+   LABEL GROUP
+   ============================================================ */
+
+.switch__label-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3xsmall);
+}

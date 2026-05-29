@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Home, Users, Settings, BarChart2, FileText, Bell, Plus, Download, MoreHorizontal } from 'lucide-react';
+import { User, Users, BarChart2, Settings, Zap, Bot, ScrollText, Network, Library, Plus, Download, Eye, Pencil, Mail, Trash2 } from 'lucide-react';
 import { GlobalLayout } from './GlobalLayout';
 import { PageHeader } from '../../molecules/PageHeader/PageHeader';
 import { TableHeaderCell } from '../../atoms/Table/TableHeaderCell';
@@ -7,14 +7,15 @@ import { TableCell } from '../../atoms/Table/TableCell';
 import { TableRow } from '../../atoms/Table/TableRow';
 import { TableHeaderRow } from '../../atoms/Table/TableHeaderRow';
 import { Tag } from '../../atoms/Tag/Tag';
-import { Button } from '../../atoms/Button/Button';
+import { ActionMenu } from '../../atoms/ActionMenu/ActionMenu';
 import { Avatar } from '../../atoms/Avatar/Avatar';
 import { Select } from '../../atoms/Select/Select';
 import { MultiSelect } from '../../atoms/MultiSelect/MultiSelect';
+import type { ContextMenuItem } from '../../atoms/ContextMenu/ContextMenu';
 import '../../atoms/Table/Table.css';
 
 const meta = {
-  title: 'Organisms/GlobalLayout',
+  title: 'Pages/Table page',
   component: GlobalLayout,
   parameters: {
     layout: 'fullscreen',
@@ -26,19 +27,28 @@ type Story = StoryObj<typeof meta>;
 
 const sections = [
   {
-    label: 'Application',
+    label: 'Organisation',
     items: [
-      { label: 'Accueil', icon: Home, selected: true, onClick: () => {} },
-      { label: 'Utilisateurs', icon: Users, onClick: () => {} },
-      { label: 'Rapports', icon: FileText, onClick: () => {} },
+      { label: 'Utilisateurs', icon: User, selected: true, onClick: () => {} },
+      { label: 'Groupes', icon: Users, onClick: () => {} },
+      { label: 'Usages', icon: BarChart2, onClick: () => {} },
     ],
   },
   {
-    label: 'Paramètres',
+    label: 'Configuration',
     items: [
-      { label: 'Statistiques', icon: BarChart2, onClick: () => {} },
-      { label: 'Notifications', icon: Bell, onClick: () => {} },
-      { label: 'Configuration', icon: Settings, onClick: () => {} },
+      { label: 'Paramètres', icon: Settings, onClick: () => {} },
+      { label: 'Connecteurs', icon: Zap, onClick: () => {} },
+      { label: "Packs d'agents", icon: Bot, onClick: () => {} },
+      { label: 'CGU', icon: ScrollText, onClick: () => {} },
+    ],
+  },
+  {
+    label: 'Espace souverain',
+    items: [
+      { label: 'Espaces de travail', icon: Network, onClick: () => {} },
+      { label: 'Bases documentaires', icon: Library, onClick: () => {} },
+      { label: 'Paramètres', icon: Settings, onClick: () => {} },
     ],
   },
 ];
@@ -53,6 +63,14 @@ const tableUsers = [
   { id: 1, name: 'Harry Potter', email: 'harry@leroy.com', company: 'Leroy Merlin', status: 'positive' as const, statusLabel: 'Actif' },
   { id: 2, name: 'Hermione Granger', email: 'hermione@leroy.com', company: 'Leroy Merlin', status: 'neutral' as const, statusLabel: 'Inactif' },
   { id: 3, name: 'Ron Weasley', email: 'ron@leroy.com', company: 'Leroy Merlin', status: 'warning' as const, statusLabel: 'En attente' },
+];
+
+const rowMenuItems: ContextMenuItem[] = [
+  { type: 'item', label: 'Voir le profil', icon: Eye },
+  { type: 'item', label: 'Modifier', icon: Pencil },
+  { type: 'item', label: "Copier l'email", icon: Mail },
+  { type: 'separator' },
+  { type: 'item', label: "Supprimer l'utilisateur", icon: Trash2, destructive: true },
 ];
 
 const UsersTable = () => (
@@ -99,14 +117,7 @@ const UsersTable = () => (
               <Tag label={u.statusLabel} status={u.status} size="compact" showDot />
             </TableCell>
             <TableCell align="right">
-              <Button
-                hierarchy="minimal"
-                layout="icon-only"
-                size="compact"
-                icon={MoreHorizontal}
-                aria-label="Plus d'actions"
-                onClick={(e) => e.stopPropagation()}
-              />
+              <ActionMenu items={rowMenuItems} />
             </TableCell>
           </TableRow>
         ))}

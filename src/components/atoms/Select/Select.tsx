@@ -1,5 +1,6 @@
 import { Select as BaseSelect } from '@base-ui/react/select';
 import { ChevronDown, Check } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { Text } from '../Text/Text';
 import './Select.css';
 
@@ -20,6 +21,7 @@ interface SelectProps {
   onChange?: (value: string) => void;
   disabled?: boolean;
   size?: SelectSize;
+  icon?: LucideIcon;
 }
 
 export function Select({
@@ -31,6 +33,7 @@ export function Select({
   onChange,
   disabled = false,
   size = 'default',
+  icon: Icon,
 }: SelectProps) {
   const iconSize = size === 'compact' ? 14 : 16;
   const triggerClasses = [
@@ -53,14 +56,21 @@ export function Select({
         )}
 
         <BaseSelect.Trigger className={triggerClasses}>
-          <BaseSelect.Value placeholder={placeholder} />
+          <span className="select__trigger-left">
+            {Icon && (
+              <span className="select__prefix-icon" aria-hidden>
+                <Icon size={iconSize} strokeWidth={2} />
+              </span>
+            )}
+            <BaseSelect.Value placeholder={placeholder} />
+          </span>
           <BaseSelect.Icon className="select__icon">
             <ChevronDown size={iconSize} strokeWidth={2} />
           </BaseSelect.Icon>
         </BaseSelect.Trigger>
 
         <BaseSelect.Portal>
-          <BaseSelect.Positioner alignItemWithTrigger={false} align="start" sideOffset={4}>
+          <BaseSelect.Positioner className="select__positioner" alignItemWithTrigger={false} align="start" sideOffset={4}>
             <BaseSelect.Popup className="select__popup">
               <BaseSelect.List className="select__list">
                 {options.map((option) => (

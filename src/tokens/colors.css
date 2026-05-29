@@ -77,6 +77,31 @@
   --color-surface-secondary:          rgba(0, 0, 0, 0.04);
   --color-surface-tertiary:           rgba(189, 121, 60, 0.08);
 
+  /* --- DECORATIVE (identiques light & dark) --- */
+  --color-decorative-green-100:       rgba(192, 232, 212, 0.4);
+  --color-decorative-green-200:       rgba(80, 190, 135, 1);
+  --color-decorative-green-300:       rgba(46, 123, 84, 1);
+
+  --color-decorative-blue-100:        rgba(165, 218, 243, 0.4);
+  --color-decorative-blue-200:        rgba(74, 180, 230, 1);
+  --color-decorative-blue-300:        rgba(19, 97, 134, 1);
+
+  --color-decorative-yellow-100:      rgba(255, 237, 153, 0.4);
+  --color-decorative-yellow-200:      rgba(255, 208, 0, 1);
+  --color-decorative-yellow-300:      rgba(255, 180, 0, 1);
+
+  --color-decorative-purple-100:      rgba(224, 212, 242, 0.4);
+  --color-decorative-purple-200:      rgba(168, 133, 216, 1);
+  --color-decorative-purple-300:      rgba(44, 23, 74, 1);
+
+  --color-decorative-pink-100:        rgba(255, 229, 246, 0.4);
+  --color-decorative-pink-200:        rgba(255, 180, 230, 1);
+  --color-decorative-pink-300:        rgba(255, 128, 212, 1);
+
+  --color-decorative-brown-100:       rgba(251, 235, 223, 0.4);
+  --color-decorative-brown-200:       rgba(244, 207, 178, 1);
+  --color-decorative-brown-300:       rgba(227, 181, 145, 1);
+
 }
 
 

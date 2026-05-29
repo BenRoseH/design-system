@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs ls)",
+      "Bash(mkdir -p /Users/hertauxbenjamin/mon-design-system/src/components/atoms/Switch)",
+      "Bash(node -e \"const m = require\\('./node_modules/@base-ui/react/toast'\\); console.log\\(Object.keys\\(m\\)\\)\")",
+      "Bash(node -e \"const { Toast } = require\\('./node_modules/@base-ui/react/toast'\\); console.log\\(Object.keys\\(Toast\\)\\)\")",
+      "WebFetch(domain:www.figma.com)",
+      "WebFetch(domain:developers.figma.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebSearch",
+      "Bash(npm run *)",
+      "Bash(./node_modules/.bin/tsc --version)"
+    ],
+    "additionalDirectories": [
+      "/Users/hertauxbenjamin/mon-design-system/src/components/atoms"
+    ]
+  }
+}

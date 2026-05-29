@@ -1,0 +1,155 @@
+/* ============================================================
+   TOAST — VIEWPORT
+   ============================================================ */
+
+.toast-viewport {
+  position: fixed;
+  bottom: var(--spacing-large);
+  right: var(--spacing-large);
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xsmall);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+/* ============================================================
+   TOAST — ROOT
+   ============================================================ */
+
+.toast {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--spacing-xsmall);
+  padding: var(--spacing-small) var(--spacing-medium);
+  border-radius: var(--radius-medium);
+  border: var(--border-default) solid;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  min-width: 320px;
+  max-width: 480px;
+  overflow: hidden;
+  transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+}
+
+/* Entry animation */
+.toast[data-starting-style] {
+  opacity: 0;
+  transform: translateX(calc(100% + var(--spacing-large)));
+}
+
+/* Exit animation */
+.toast[data-ending-style] {
+  opacity: 0;
+  transform: translateX(calc(100% + var(--spacing-large)));
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in;
+}
+
+/* ============================================================
+   TOAST — VARIANTS
+   ============================================================ */
+
+.toast--positive {
+  background-color: var(--color-status-positive-muted);
+  border-color: var(--color-status-positive-emphasized);
+}
+
+.toast--negative {
+  background-color: var(--color-status-negative-muted);
+  border-color: var(--color-status-negative-emphasized);
+}
+
+.toast--warning {
+  background-color: var(--color-status-warning-muted);
+  border-color: var(--color-status-warning-emphasized);
+}
+
+.toast--info {
+  background-color: var(--color-status-info-muted);
+  border-color: var(--color-status-info-emphasized);
+}
+
+.toast--neutral {
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-border-muted);
+}
+
+/* ============================================================
+   TOAST — ICON
+   ============================================================ */
+
+.toast__icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.toast--positive .toast__icon { color: var(--color-status-positive-emphasized); }
+.toast--negative .toast__icon { color: var(--color-status-negative-emphasized); }
+.toast--warning  .toast__icon { color: var(--color-status-warning-emphasized); }
+.toast--info     .toast__icon { color: var(--color-status-info-emphasized); }
+.toast--neutral  .toast__icon { color: var(--color-content-muted); }
+
+/* ============================================================
+   TOAST — CONTENT
+   ============================================================ */
+
+.toast__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3xsmall);
+  flex: 1;
+  min-width: 0;
+}
+
+.toast__title {
+  color: var(--color-content-default);
+}
+
+.toast__description {
+  color: var(--color-content-muted);
+}
+
+.toast__action {
+  margin-top: var(--spacing-3xsmall);
+}
+
+/* ============================================================
+   TOAST — CLOSE BUTTON
+   ============================================================ */
+
+.toast__close {
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+/* ============================================================
+   TOAST — PROGRESS BAR
+   ============================================================ */
+
+.toast__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  animation: toast-progress linear forwards;
+  animation-duration: var(--toast-duration, 4000ms);
+}
+
+.toast--positive .toast__progress { background-color: var(--color-status-positive-emphasized); }
+.toast--negative .toast__progress { background-color: var(--color-status-negative-emphasized); }
+.toast--warning  .toast__progress { background-color: var(--color-status-warning-emphasized); }
+.toast--info     .toast__progress { background-color: var(--color-status-info-emphasized); }
+.toast--neutral  .toast__progress { background-color: var(--color-border-muted); }
+
+@keyframes toast-progress {
+  from { width: 100%; }
+  to   { width: 0%; }
+}

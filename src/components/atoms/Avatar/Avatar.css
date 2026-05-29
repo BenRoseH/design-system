@@ -24,6 +24,17 @@
 }
 
 /* ============================================================
+   DECORATIVE COLORS
+   ============================================================ */
+
+.avatar.avatar--green  { background: var(--color-decorative-green-100); }
+.avatar.avatar--blue   { background: var(--color-decorative-blue-100); }
+.avatar.avatar--yellow { background: var(--color-decorative-yellow-100); }
+.avatar.avatar--purple { background: var(--color-decorative-purple-100); }
+.avatar.avatar--pink   { background: var(--color-decorative-pink-100); }
+.avatar.avatar--brown  { background: var(--color-decorative-brown-100); }
+
+/* ============================================================
    SIZE — compact
    ============================================================ */
 

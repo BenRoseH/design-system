@@ -20,3 +20,50 @@
   padding: var(--spacing-small) var(--spacing-medium);
   border-bottom: var(--border-default) solid var(--color-border-minimal);
 }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* ============================================================
+   SKELETON
+   ============================================================ */
+
+.table-skeleton__cell {
+  padding: var(--spacing-small) var(--spacing-medium);
+}
+
+.table-skeleton__bar {
+  display: block;
+  height: 14px;
+  width: 100px;
+  border-radius: var(--radius-small);
+  background: var(--color-surface-secondary);
+  animation: table-skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes table-skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ============================================================
+   EMPTY / ERROR STATE
+   ============================================================ */
+
+.table-state__cell {
+  padding: var(--spacing-large) var(--spacing-medium);
+  text-align: center;
+}
+
+/* ============================================================
+   AVATAR CELL
+   ============================================================ */
+
+.table-cell__with-avatar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xsmall);
+}

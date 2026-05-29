@@ -1,0 +1,25 @@
+@import '../../../tokens/index.css';
+
+.action-menu__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-small);
+  border: none;
+  background: none;
+  color: var(--color-content-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.action-menu__trigger:hover {
+  background: var(--color-bg-secondary);
+  color: var(--color-content-default);
+}
+
+.action-menu__trigger:focus-visible {
+  outline: var(--border-default) solid var(--color-border-focus);
+  outline-offset: 2px;
+}

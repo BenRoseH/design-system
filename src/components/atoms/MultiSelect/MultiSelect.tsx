@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Popover } from '@base-ui/react/popover';
 import { ChevronDown, Check } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { Text } from '../Text/Text';
 import './MultiSelect.css';
 
@@ -20,6 +21,7 @@ interface MultiSelectProps {
   onChange?: (value: string[]) => void;
   disabled?: boolean;
   size?: MultiSelectSize;
+  icon?: LucideIcon;
 }
 
 export function MultiSelect({
@@ -30,6 +32,7 @@ export function MultiSelect({
   onChange,
   disabled = false,
   size = 'default',
+  icon: Icon,
 }: MultiSelectProps) {
   const [internalValue, setInternalValue] = useState<string[]>(defaultValue);
   const selectedValues = value ?? internalValue;
@@ -42,9 +45,6 @@ export function MultiSelect({
     onChange?.(next);
   };
 
-  const longestLabel = [label, ...options.map(o => o.label)]
-    .reduce((a, b) => a.length >= b.length ? a : b, '');
-
   const count = selectedValues.length;
   const iconSize = size === 'compact' ? 14 : 16;
   const triggerClass = [
@@ -56,17 +56,15 @@ export function MultiSelect({
     <div className="multiselect">
       <Popover.Root>
         <Popover.Trigger className={triggerClass} disabled={disabled}>
-          <span className="multiselect__value-sizer">
-            <Text as="span" variant="body-medium-default">{label}</Text>
-            <Text as="span" variant="body-medium-default" className="multiselect__sizer-ghost" aria-hidden="true">
-              {longestLabel}
-            </Text>
-          </span>
-          {count > 0 && (
-            <span className="multiselect__count">
-              <Text as="span" variant="body-small-strong">{count}</Text>
+          {Icon && (
+            <span className="multiselect__prefix-icon" aria-hidden>
+              <Icon size={iconSize} strokeWidth={2} />
             </span>
           )}
+          <Text as="span" variant="body-medium-default">{label}</Text>
+          <span className={`multiselect__count${count === 0 ? ' multiselect__count--hidden' : ''}`} aria-hidden={count === 0}>
+            <Text as="span" variant="body-small-strong">{count}</Text>
+          </span>
           <span className="multiselect__icon">
             <ChevronDown size={iconSize} strokeWidth={2} />
           </span>

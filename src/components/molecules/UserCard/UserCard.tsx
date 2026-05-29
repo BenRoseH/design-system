@@ -1,4 +1,4 @@
-import { Avatar } from '../../atoms/Avatar/Avatar';
+import { Avatar, type DecorativeColor } from '../../atoms/Avatar/Avatar';
 import { Text } from '../../atoms/Text/Text';
 import './UserCard.css';
 
@@ -7,6 +7,7 @@ interface UserCardProps {
   lastName: string;
   company?: string;
   size?: 'sm' | 'md' | 'lg';
+  colorDecoration?: DecorativeColor;
   selected?: boolean;
   onClick?: () => void;
 }
@@ -16,6 +17,7 @@ export function UserCard({
   lastName,
   company,
   size = 'md',
+  colorDecoration,
   selected = false,
   onClick,
 }: UserCardProps) {
@@ -35,7 +37,7 @@ export function UserCard({
 
   const content = (
     <>
-      <Avatar fallback={fallback} size={avatarSize} />
+      <Avatar fallback={fallback} size={avatarSize} colorDecoration={colorDecoration} />
       <div className="user-card__info">
         {company && (
           <Text as="span" variant="body-small-default" color="muted">

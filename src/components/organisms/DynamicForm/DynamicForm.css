@@ -1,0 +1,28 @@
+@import '../../../tokens/index.css';
+
+.dynamic-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+}
+
+.dynamic-form__title {
+  font-size: var(--typography-heading-small-font-size);
+  line-height: var(--typography-heading-small-line-height);
+  font-weight: var(--typography-heading-small-font-weight);
+  letter-spacing: var(--typography-heading-small-letter-spacing);
+  color: var(--color-content-default);
+}
+
+.dynamic-form__panel {
+  background: var(--color-bg-default);
+  border-radius: var(--radius-medium);
+  border: var(--border-default) solid var(--color-border-muted);
+  padding: var(--spacing-small);
+}
+
+.dynamic-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+}

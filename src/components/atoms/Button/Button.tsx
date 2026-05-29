@@ -16,6 +16,7 @@ interface ButtonPropsBase {
   children?: React.ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   type?: 'button' | 'submit' | 'reset';
+  form?: string;
   className?: string;
 }
 
@@ -48,6 +49,7 @@ export function Button({
   children,
   onClick,
   type = 'button',
+  form,
   className,
   ...rest
 }: ButtonProps) {
@@ -75,6 +77,7 @@ export function Button({
       aria-label={layout === 'icon-only' ? ariaLabel : undefined}
       onClick={onClick}
       type={type}
+      form={form}
     >
       {layout === 'icon-text' && IconComponent && (
         <span className="btn__icon" aria-hidden="true">

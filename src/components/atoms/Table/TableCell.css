@@ -1,7 +1,7 @@
 @import '../../../tokens/index.css';
 
 .table-cell {
-  padding: var(--spacing-small) var(--spacing-medium);
+  padding: var(--spacing-xsmall) var(--spacing-medium);
   text-align: left;
   border-right: var(--border-default) solid var(--color-border-minimal);
 }
@@ -12,6 +12,9 @@
 
 .table-cell--center {
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .table-cell--right {

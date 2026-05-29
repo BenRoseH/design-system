@@ -1,0 +1,10 @@
+@import '../../tokens/index.css';
+
+.create-user-page__form {
+  background: var(--color-bg-default);
+  border-radius: var(--radius-medium);
+  border: var(--border-default) solid var(--color-border-muted);
+  padding: var(--spacing-large);
+  width: 100%;
+  max-width: 560px;
+}

@@ -67,6 +67,25 @@
 }
 
 /* ============================================================
+   TRIGGER LEFT GROUP
+   ============================================================ */
+
+.select__trigger-left {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-small);
+  min-width: 0;
+  flex: 1;
+}
+
+.select__prefix-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--color-content-muted);
+}
+
+/* ============================================================
    ICON (chevron)
    ============================================================ */
 
@@ -83,6 +102,14 @@
 }
 
 /* ============================================================
+   POSITIONER
+   ============================================================ */
+
+.select__positioner {
+  z-index: 500;
+}
+
+/* ============================================================
    POPUP
    ============================================================ */
 
@@ -93,7 +120,6 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   padding: var(--spacing-2xsmall);
   min-width: var(--anchor-width);
-  z-index: 100;
   opacity: 0;
   transform: translateY(-4px);
   transition: opacity 0.15s ease, transform 0.15s ease;

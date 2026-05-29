@@ -3,7 +3,8 @@ import { getUsers, getUserById, createUser, deleteUser, updateUser } from '../se
 import type { User } from '../types/user'
 
 type UserFilters = {
-  role?: string
+  roles?: string[]
+  statuts?: string[]
   search?: string
 }
 

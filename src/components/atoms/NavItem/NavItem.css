@@ -18,6 +18,7 @@
 
 .nav-item .text {
   color: var(--color-content-default);
+  font-weight: 400;
 }
 
 /* Icon only */
@@ -45,6 +46,7 @@
 
 .nav-item--selected .text {
   color: var(--color-content-brand-primary);
+  font-weight: 500;
 }
 
 /* Active : selected + hover */

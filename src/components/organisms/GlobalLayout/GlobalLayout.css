@@ -10,6 +10,8 @@
 .global-layout__main {
   flex: 1;
   background: var(--color-bg-secondary);
+  --btn-minimal-bg: var(--color-bg-default);
+  --color-btn-minimal-hover-bg: var(--color-bg-default);
   padding: var(--spacing-medium);
   overflow-y: auto;
   display: flex;

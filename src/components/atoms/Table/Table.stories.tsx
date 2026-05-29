@@ -1,90 +1,106 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { MoreHorizontal } from 'lucide-react';
-import { TableHeaderCell } from './TableHeaderCell';
-import { TableCell } from './TableCell';
-import { TableRow } from './TableRow';
-import { TableHeaderRow } from './TableHeaderRow';
+import { Table } from './Table';
+import { Avatar, type DecorativeColor } from '../Avatar/Avatar';
 import { Tag } from '../Tag/Tag';
-import { Button } from '../Button/Button';
-import { Avatar } from '../Avatar/Avatar';
-import { Select } from '../Select/Select';
-import { MultiSelect } from '../MultiSelect/MultiSelect';
+import { Text } from '../Text/Text';
+import { Eye, Pencil, Trash2 } from 'lucide-react';
+import type { ColumnConfig } from '../../../types/column';
+import type { ContextMenuItem } from '../ContextMenu/ContextMenu';
+import { useUsers } from '../../../hooks/useUsers';
+import { usersColumns } from '../../../pages/Users/users.columns';
 import './Table.css';
 
 const meta = {
   title: 'Atoms/Table',
-  parameters: {
-    layout: 'padded',
-  },
-} as Meta;
+  component: Table,
+  parameters: { layout: 'padded' },
+} satisfies Meta<typeof Table>;
 
 export default meta;
-type Story = StoryObj;
+type Story = StoryObj<typeof meta>;
 
-const users = [
-  { id: 1, name: 'Harry Potter', email: 'harry@leroy.com', company: 'Leroy Merlin', status: 'positive' as const, statusLabel: 'Actif' },
-  { id: 2, name: 'Hermione Granger', email: 'hermione@leroy.com', company: 'Leroy Merlin', status: 'neutral' as const, statusLabel: 'Inactif' },
-  { id: 3, name: 'Ron Weasley', email: 'ron@leroy.com', company: 'Leroy Merlin', status: 'warning' as const, statusLabel: 'En attente' },
+type User = {
+  id: number;
+  name: string;
+  email: string;
+  company: string;
+  status: 'positive' | 'neutral' | 'warning';
+  statusLabel: string;
+  colorDecoration: DecorativeColor;
+};
+
+const users: User[] = [
+  { id: 1, name: 'Harry Potter',     email: 'harry@leroy.com',    company: 'Leroy Merlin', status: 'positive', statusLabel: 'Actif',      colorDecoration: 'blue'   },
+  { id: 2, name: 'Hermione Granger', email: 'hermione@leroy.com', company: 'Leroy Merlin', status: 'neutral',  statusLabel: 'Inactif',    colorDecoration: 'purple' },
+  { id: 3, name: 'Ron Weasley',      email: 'ron@leroy.com',      company: 'Leroy Merlin', status: 'warning',  statusLabel: 'En attente', colorDecoration: 'brown'  },
 ];
 
-export const Anatomy: Story = {
-  render: () => (
-    <div className="table-container">
-      <div className="table-toolbar">
-        <MultiSelect
-          size="compact"
-          label="Statut"
-          options={[{ value: 'active', label: 'Actif' }, { value: 'inactive', label: 'Inactif' }, { value: 'pending', label: 'En attente' }]}
-        />
-        <Select
-          size="compact"
-          options={[{ value: 'all', label: 'Toutes les entreprises' }, { value: 'leroy', label: 'Leroy Merlin' }, { value: 'adeo', label: 'Adeo' }]}
-          defaultValue="all"
-        />
-        <Select
-          size="compact"
-          options={[{ value: 'all', label: 'Tous les rôles' }, { value: 'admin', label: 'Administrateur' }, { value: 'user', label: 'Utilisateur' }]}
-          defaultValue="all"
-        />
+const rowMenuItems: ContextMenuItem[] = [
+  { type: 'item', label: 'Voir', icon: Eye },
+  { type: 'item', label: 'Modifier', icon: Pencil },
+  { type: 'separator' },
+  { type: 'item', label: 'Supprimer', icon: Trash2, destructive: true },
+];
+
+const columns: ColumnConfig<User>[] = [
+  {
+    key: 'name',
+    label: 'Nom',
+    visible: true,
+    render: (row) => (
+      <div className="table-cell__with-avatar">
+        <Avatar fallback={row.name.split(' ').map(n => n[0]).join('')} size="compact" colorDecoration={row.colorDecoration} />
+        <Text as="span" variant="body-medium-default">{row.name}</Text>
       </div>
-      <table>
-        <thead>
-          <TableHeaderRow>
-            <TableHeaderCell>Nom</TableHeaderCell>
-            <TableHeaderCell>Email</TableHeaderCell>
-            <TableHeaderCell>Entreprise</TableHeaderCell>
-            <TableHeaderCell>Statut</TableHeaderCell>
-            <th style={{ width: 48 }} />
-          </TableHeaderRow>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <TableRow key={user.id} onClick={() => {}}>
-              <TableCell>
-                  <div className="table-cell__with-avatar">
-                    <Avatar fallback={user.name.split(' ').map(n => n[0]).join('')} size="compact" />
-                    {user.name}
-                  </div>
-                </TableCell>
-              <TableCell>{user.email}</TableCell>
-              <TableCell>{user.company}</TableCell>
-              <TableCell>
-                <Tag label={user.statusLabel} status={user.status} size="compact" showDot />
-              </TableCell>
-              <TableCell align="right">
-                <Button
-                  hierarchy="minimal"
-                  layout="icon-only"
-                  size="compact"
-                  icon={MoreHorizontal}
-                  aria-label="Plus d'actions"
-                  onClick={(e) => e.stopPropagation()}
-                />
-              </TableCell>
-            </TableRow>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  ),
+    ),
+  },
+  { key: 'email',   label: 'Email',     visible: true  },
+  { key: 'company', label: 'Entreprise', visible: true  },
+  {
+    key: 'status',
+    label: 'Statut',
+    visible: true,
+    render: (row) => <Tag label={row.statusLabel} status={row.status} size="compact" showDot />,
+  },
+];
+
+const columnsWithHidden: ColumnConfig<User>[] = columns.map((c) =>
+  c.key === 'company' ? { ...c, visible: false } : c
+);
+
+export const Default: Story = {
+  args: { columns, data: users, rowActions: rowMenuItems },
+};
+
+export const WithHiddenColumn: Story = {
+  args: { columns: columnsWithHidden, data: users, rowActions: rowMenuItems },
+};
+
+export const Loading: Story = {
+  args: { columns, data: [], loading: true },
+};
+
+export const Empty: Story = {
+  args: { columns, data: [], emptyMessage: 'Aucun utilisateur trouvé.' },
+};
+
+export const WithError: Story = {
+  args: { columns, data: [], error: 'Une erreur est survenue lors du chargement.' },
+};
+
+export const Live: Story = {
+  args: { columns: [], data: [] },
+  render: () => {
+    const { data: users, isLoading, error } = useUsers();
+    return (
+      <Table
+        columns={usersColumns}
+        data={users ?? []}
+        loading={isLoading}
+        error={error ? 'Erreur de chargement des utilisateurs.' : undefined}
+        emptyMessage="Aucun utilisateur trouvé."
+        rowActions={rowMenuItems}
+      />
+    );
+  },
 };
