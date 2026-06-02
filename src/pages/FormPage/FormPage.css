@@ -15,12 +15,13 @@
   background: var(--color-bg-secondary);
   padding: var(--spacing-2xlarge) var(--spacing-large) 0;
   gap: var(--spacing-medium);
-  transform: translateY(100%);
+  transform: translateY(0);
   transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
-.form-page[data-open] {
-  transform: translateY(0);
+.form-page[data-starting-style],
+.form-page[data-ending-style] {
+  transform: translateY(100%);
 }
 
 /* ============================================================

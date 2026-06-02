@@ -1,0 +1,126 @@
+@import '../../../tokens/index.css';
+
+/* ── CellText ─────────────────────────────────── */
+
+.cell-text--truncate {
+  display: block;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── CellJauge ────────────────────────────────── */
+
+.cell-jauge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xsmall);
+}
+
+.cell-jauge--positive { color: var(--color-status-positive-emphasized); }
+.cell-jauge--warning  { color: var(--color-status-warning-emphasized); }
+.cell-jauge--negative { color: var(--color-status-negative-emphasized); }
+
+.cell-jauge__ring-track {
+  stroke: var(--color-bg-secondary);
+}
+
+.cell-jauge__ring-arc {
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+.cell-jauge__label {
+  font-size: var(--typography-body-small-moderate-font-size);
+  font-weight: var(--typography-body-small-moderate-font-weight);
+  line-height: var(--typography-body-small-moderate-line-height);
+  letter-spacing: var(--typography-body-small-moderate-letter-spacing);
+  color: var(--color-content-muted);
+  font-family: var(--font-family-sans);
+}
+
+/* ── CellTag / CellAccess ─────────────────────── */
+
+.cell-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-3xsmall);
+}
+
+.cell-access__item--disabled {
+  opacity: 0.4;
+}
+
+/* ── CellWarningValue ─────────────────────────── */
+
+.cell-warning-value {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-status-negative-emphasized);
+  font-size: var(--typography-body-small-default-font-size);
+  font-family: var(--font-family-sans);
+}
+
+/* ── CellMore ─────────────────────────────────── */
+
+.cell-more {
+  width: 48px;
+  max-width: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ── CellAvatar ───────────────────────────────── */
+
+.cell-avatar .user-card {
+  padding: 0;
+}
+
+.cell-avatar .user-card:hover {
+  background: transparent;
+}
+
+.cell-avatar .text {
+  font-size: var(--typography-body-small-moderate-font-size);
+  line-height: var(--typography-body-small-moderate-line-height);
+  font-weight: var(--typography-body-small-moderate-font-weight);
+  letter-spacing: var(--typography-body-small-moderate-letter-spacing);
+}
+
+/* ── CellHeader ───────────────────────────────── */
+
+.cell-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-xsmall);
+  padding: 0 var(--spacing-small);
+  height: 40px;
+  background: var(--color-bg-secondary);
+  width: 100%;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.cell-header--sortable {
+  cursor: pointer;
+}
+
+
+.cell-header__sort-icon {
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  color: var(--color-content-muted);
+  flex-shrink: 0;
+  transition: opacity 0.15s ease;
+}
+
+.cell-header--sortable:hover .cell-header__sort-icon,
+.cell-header__sort-icon--active {
+  opacity: 1;
+}

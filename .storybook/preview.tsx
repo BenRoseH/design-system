@@ -4,7 +4,8 @@ import { QueryClient, QueryClientProvider, useQueryClient } from '@tanstack/reac
 import { useEffect, useRef } from 'react';
 import { supabase } from '../src/lib/supabase';
 import { ToastProvider } from '../src/components/atoms/Toast/ToastProvider';
-import { AppProvider } from '../src/contexts/AppContext';
+import { AppProvider, useAppContext } from '../src/contexts/AppContext';
+import type { AppMode } from '../src/contexts/AppContext';
 import '../src/tokens/index.css';
 import '../src/index.css';
 
@@ -27,9 +28,31 @@ function SupabaseRealTimeSync({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
+function AppModeSync({ mode }: { mode: AppMode }) {
+  const { setMode } = useAppContext();
+  useEffect(() => {
+    setMode(mode);
+  }, [mode, setMode]);
+  return null;
+}
+
 const preview: Preview = {
+  globalTypes: {
+    appMode: {
+      description: 'Mode applicatif',
+      toolbar: {
+        title: 'Mode',
+        icon: 'switchalt',
+        items: [
+          { value: 'orange-business', title: 'Orange Business' },
+          { value: 'client', title: 'Client' },
+        ],
+        dynamicTitle: true,
+      },
+    },
+  },
   decorators: [
-    (Story) => {
+    (Story, context) => {
       const clientRef = useRef<QueryClient | null>(null);
       if (!clientRef.current) {
         clientRef.current = new QueryClient({
@@ -41,9 +64,11 @@ const preview: Preview = {
           },
         });
       }
+      const appMode = (context.globals.appMode as AppMode) || 'orange-business';
       return (
         <QueryClientProvider client={clientRef.current}>
           <AppProvider>
+            <AppModeSync mode={appMode} />
             <ToastProvider>
               <SupabaseRealTimeSync>
                 <Story />

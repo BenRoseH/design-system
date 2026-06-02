@@ -1,5 +1,5 @@
+import { User, AtSign, UserCog, Languages, Shield } from 'lucide-react'
 import type { FieldConfig } from '../../types/field'
-import { ROLE_OPTIONS } from './users.constants'
 
 export const usersFields: FieldConfig[] = [
   {
@@ -9,6 +9,7 @@ export const usersFields: FieldConfig[] = [
     required: true,
     placeholder: 'Prénom',
     autoComplete: 'given-name',
+    icon: User,
     validation: {
       minLength: { value: 2, message: 'Minimum 2 caractères' }
     }
@@ -20,6 +21,7 @@ export const usersFields: FieldConfig[] = [
     required: true,
     placeholder: 'Nom',
     autoComplete: 'family-name',
+    icon: User,
     validation: {
       minLength: { value: 2, message: 'Minimum 2 caractères' }
     }
@@ -31,6 +33,7 @@ export const usersFields: FieldConfig[] = [
     required: true,
     placeholder: 'prenom.nom@entreprise.com',
     autoComplete: 'email',
+    icon: AtSign,
     validation: {
       pattern: {
         value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -43,13 +46,18 @@ export const usersFields: FieldConfig[] = [
     type: 'select',
     label: 'Rôle',
     required: true,
-    options: [...ROLE_OPTIONS]
+    icon: UserCog,
+    options: [
+      { value: 'Administrateur', label: 'Administrateur', icon: Shield },
+      { value: 'Utilisateur', label: 'Utilisateur', icon: User },
+    ]
   },
   {
     name: 'language',
     type: 'select',
     label: 'Langue',
     required: true,
+    icon: Languages,
     options: [
       { value: 'Français', label: 'Français' },
       { value: 'Anglais', label: 'Anglais' }

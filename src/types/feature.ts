@@ -7,8 +7,10 @@ export type Feature = {
   client_overrides: Record<string, boolean>
 }
 
-export type FeatureName =
-  | 'users'
+export type FeatureName = 
+  | 'users' 
   | 'usages'
   | 'settings'
   | 'applications'
+  | 'abonnement'
+  | 'espace-souverain'

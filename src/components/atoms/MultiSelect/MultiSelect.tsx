@@ -10,6 +10,7 @@ export type MultiSelectSize = 'default' | 'compact';
 export interface MultiSelectOption {
   value: string;
   label: string;
+  icon?: LucideIcon;
   disabled?: boolean;
 }
 
@@ -81,6 +82,7 @@ export function MultiSelect({
               >
                 {options.map(option => {
                   const isSelected = selectedValues.includes(option.value);
+                  const OptionIcon = option.icon;
                   return (
                     <li
                       key={option.value}
@@ -107,6 +109,11 @@ export function MultiSelect({
                       ].filter(Boolean).join(' ')}>
                         {isSelected && <Check size={10} strokeWidth={2.5} />}
                       </span>
+                      {OptionIcon && (
+                        <span className="multiselect__item-icon" aria-hidden>
+                          <OptionIcon size={14} strokeWidth={2} />
+                        </span>
+                      )}
                       <Text as="span" variant="body-medium-default">{option.label}</Text>
                     </li>
                   );

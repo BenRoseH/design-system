@@ -1,3 +1,6 @@
+import type { LucideIcon } from 'lucide-react'
+import type { SelectOption } from '../components/atoms/Select/Select'
+
 export type FieldConfig = {
   name: string
   type: 'text' | 'email' | 'select' | 'radio' | 'checkbox'
@@ -5,8 +8,9 @@ export type FieldConfig = {
   required?: boolean
   placeholder?: string
   autoComplete?: string
+  icon?: LucideIcon
   helper?: string
-  options?: Array<{ value: string, label: string }>
+  options?: SelectOption[]
   validation?: {
     minLength?: { value: number, message: string }
     maxLength?: { value: number, message: string }

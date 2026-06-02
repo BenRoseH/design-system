@@ -17,6 +17,11 @@
   align-items: center;
 }
 
+.table-cell--center:last-child {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .table-cell--right {
   text-align: right;
 }

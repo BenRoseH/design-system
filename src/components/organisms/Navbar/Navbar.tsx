@@ -12,9 +12,10 @@ import './Navbar.css';
 
 interface NavbarProps {
   title?: string;
-  user: { firstName: string; lastName: string; company: string };
+  user: { firstName: string; lastName: string; company: string; colorDecoration?: string };
   defaultCollapsed?: boolean;
   onCollapseChange?: (collapsed: boolean) => void;
+  activePath?: string;
 }
 
 export function Navbar({
@@ -22,6 +23,7 @@ export function Navbar({
   user,
   defaultCollapsed = false,
   onCollapseChange,
+  activePath,
 }: NavbarProps) {
   const [collapsed, setCollapsed] = useState(defaultCollapsed);
   const { mode, clientId } = useAppContext();
@@ -34,11 +36,6 @@ export function Navbar({
       !item.feature || hasFeature(item.feature)
     ),
   }));
-
-  console.log('mode:', mode)
-  console.log('rawSections:', rawSections)
-  console.log('hasFeature users:', hasFeature('users'))
-  console.log('sections filtrées:', sections)
 
   function handleToggle() {
     const next = !collapsed;
@@ -86,12 +83,15 @@ export function Navbar({
                       key={item.label}
                       icon={item.icon}
                       aria-label={item.label}
+                      selected={item.path === activePath}
                     />
                   ) : (
                     <NavItem
                       key={item.label}
                       icon={item.icon}
                       label={item.label}
+                      externalLink={item.externalLink}
+                      selected={item.path === activePath}
                     />
                   )
                 )}
@@ -106,6 +106,7 @@ export function Navbar({
           firstName={user.firstName}
           lastName={user.lastName}
           company={user.company}
+          colorDecoration={user.colorDecoration as any}
           size="sm"
         />
       </div>

@@ -1,17 +1,16 @@
 import { useState } from 'react';
 import { Navbar } from '../Navbar/Navbar';
-import type { NavSection } from '../Navbar/Navbar';
 import { GlobalLayoutContext } from './GlobalLayoutContext';
 import './GlobalLayout.css';
 
 interface GlobalLayoutProps {
   children?: React.ReactNode;
   navTitle?: string;
-  sections: NavSection[];
-  user: { firstName: string; lastName: string; company: string };
+  activePath?: string;
+  user: { firstName: string; lastName: string; company: string; colorDecoration?: string };
 }
 
-export function GlobalLayout({ children, navTitle, sections, user }: GlobalLayoutProps) {
+export function GlobalLayout({ children, navTitle, activePath, user }: GlobalLayoutProps) {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
@@ -19,7 +18,7 @@ export function GlobalLayout({ children, navTitle, sections, user }: GlobalLayou
       <div className="global-layout">
         <Navbar
           title={navTitle}
-          sections={sections}
+          activePath={activePath}
           user={user}
           onCollapseChange={setCollapsed}
         />

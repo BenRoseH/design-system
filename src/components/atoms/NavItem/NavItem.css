@@ -66,6 +66,21 @@
   color: var(--color-content-disable);
 }
 
+/* External link icon */
+
+.nav-item__external {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  color: var(--color-content-muted);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.nav-item:hover:not(.nav-item--disabled) .nav-item__external {
+  opacity: 1;
+}
+
 /* Focus visible */
 
 .nav-item:focus-visible {

@@ -1,3 +1,4 @@
+import { ExternalLink } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Text } from '../Text/Text';
 import './NavItem.css';
@@ -6,6 +7,7 @@ interface NavItemPropsBase {
   icon?: LucideIcon;
   selected?: boolean;
   disabled?: boolean;
+  externalLink?: boolean;
   onClick?: () => void;
 }
 
@@ -26,6 +28,7 @@ export function NavItem({
   icon: Icon,
   selected = false,
   disabled = false,
+  externalLink = false,
   onClick,
   ...rest
 }: NavItemProps) {
@@ -59,6 +62,11 @@ export function NavItem({
         <Text as="span" variant="body-medium-moderate">
           {label}
         </Text>
+      )}
+      {externalLink && label && (
+        <span className="nav-item__external" aria-hidden="true">
+          <ExternalLink size={14} color="currentColor" />
+        </span>
       )}
     </button>
   );

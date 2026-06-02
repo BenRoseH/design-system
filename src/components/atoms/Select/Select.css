@@ -176,6 +176,23 @@
 }
 
 /* ============================================================
+   ITEM LABEL (icon + text, used in list and in trigger via ItemText)
+   ============================================================ */
+
+.select__item-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xsmall);
+}
+
+.select__item-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--color-content-muted);
+}
+
+/* ============================================================
    ITEM INDICATOR (checkmark)
    ============================================================ */
 

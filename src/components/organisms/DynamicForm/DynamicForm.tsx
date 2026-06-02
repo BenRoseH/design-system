@@ -117,6 +117,7 @@ export function DynamicForm({
                 onChange={(v) => setValue(field.name, v)}
                 placeholder={field.placeholder}
                 invalid={!!errors[field.name]}
+                icon={field.icon}
               />
             )}
 
@@ -125,6 +126,7 @@ export function DynamicForm({
                 options={field.options ?? []}
                 value={values[field.name]}
                 onChange={(v) => setValue(field.name, v)}
+                icon={field.icon}
               />
             )}
           </Field>

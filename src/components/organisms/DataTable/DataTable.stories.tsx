@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { DataTable } from './DataTable';
-import { Avatar, type DecorativeColor } from '../../atoms/Avatar/Avatar';
-import { Tag } from '../../atoms/Tag/Tag';
-import { Text } from '../../atoms/Text/Text';
 import { Eye, Pencil, Trash2 } from 'lucide-react';
-import type { ColumnConfig } from '../../../types/column';
+import { DataTable } from './DataTable';
+import { usersColumns } from '../../../pages/Users/users.columns';
+import type { User } from '../../../types/user';
 import type { ContextMenuItem } from '../../atoms/ContextMenu/ContextMenu';
 
 const meta = {
@@ -16,22 +14,77 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-type User = {
-  id: number;
-  name: string;
-  email: string;
-  role: string;
-  status: string;
-  statusLabel: string;
-  colorDecoration: DecorativeColor;
-};
-
-const users: User[] = [
-  { id: 1, name: 'Harry Potter',       email: 'harry@leroy.com',    role: 'Administrateur', status: 'Actif',              statusLabel: 'Actif',              colorDecoration: 'blue'   },
-  { id: 2, name: 'Hermione Granger',   email: 'hermione@leroy.com', role: 'Utilisateur',    status: 'Actif',              statusLabel: 'Actif',              colorDecoration: 'purple' },
-  { id: 3, name: 'Ron Weasley',        email: 'ron@leroy.com',      role: 'Utilisateur',    status: 'Invitation envoyée', statusLabel: 'Invitation envoyée', colorDecoration: 'brown'  },
-  { id: 4, name: 'Neville Longbottom', email: 'neville@leroy.com',  role: 'Utilisateur',    status: 'Actif',              statusLabel: 'Actif',              colorDecoration: 'green'  },
-  { id: 5, name: 'Luna Lovegood',      email: 'luna@leroy.com',     role: 'Administrateur', status: 'Invitation envoyée', statusLabel: 'Invitation envoyée', colorDecoration: 'pink'   },
+const mockUsers: User[] = [
+  {
+    id: '1',
+    created_at: '2024-01-15T10:00:00Z',
+    first_name: 'Harry',
+    last_name: 'Potter',
+    email: 'harry.potter@leroy.com',
+    color_decoration: 'blue',
+    language: 'Français',
+    statut: 'Actif',
+    last_activity: 'Il y a 2h',
+    united_used: 42,
+    united_total: 100,
+    role: 'Administrateur',
+  },
+  {
+    id: '2',
+    created_at: '2024-02-10T09:00:00Z',
+    first_name: 'Hermione',
+    last_name: 'Granger',
+    email: 'hermione.granger@leroy.com',
+    color_decoration: 'purple',
+    language: 'Anglais',
+    statut: 'Actif',
+    last_activity: 'Il y a 1j',
+    united_used: 87,
+    united_total: 100,
+    role: 'Utilisateur',
+  },
+  {
+    id: '3',
+    created_at: '2024-03-05T14:00:00Z',
+    first_name: 'Ron',
+    last_name: 'Weasley',
+    email: 'ron.weasley@leroy.com',
+    color_decoration: 'brown',
+    language: 'Français',
+    statut: 'Invitation envoyée',
+    last_activity: '',
+    united_used: 0,
+    united_total: 100,
+    role: 'Utilisateur',
+  },
+  {
+    id: '4',
+    created_at: '2024-04-20T11:00:00Z',
+    first_name: 'Albus',
+    last_name: 'Dumbledore',
+    email: 'albus.dumbledore@leroy.com',
+    color_decoration: 'yellow',
+    language: 'Français',
+    statut: 'Actif',
+    last_activity: 'Il y a 3j',
+    united_used: 12,
+    united_total: 100,
+    role: 'Administrateur',
+  },
+  {
+    id: '5',
+    created_at: '2024-05-01T08:00:00Z',
+    first_name: 'Minerva',
+    last_name: 'McGonagall',
+    email: 'minerva.mcgonagall@leroy.com',
+    color_decoration: 'green',
+    language: 'Anglais',
+    statut: 'Invitation envoyée',
+    last_activity: '',
+    united_used: 0,
+    united_total: 100,
+    role: 'Utilisateur',
+  },
 ];
 
 const rowMenuItems: ContextMenuItem[] = [
@@ -41,60 +94,34 @@ const rowMenuItems: ContextMenuItem[] = [
   { type: 'item', label: 'Supprimer', icon: Trash2, destructive: true },
 ];
 
-const columns: ColumnConfig<User>[] = [
-  {
-    key: 'name',
-    label: 'Nom',
-    visible: true,
-    render: (row) => (
-      <div className="table-cell__with-avatar">
-        <Avatar fallback={row.name.split(' ').map(n => n[0]).join('')} size="compact" colorDecoration={row.colorDecoration} />
-        <Text as="span" variant="body-medium-default">{row.name}</Text>
-      </div>
-    ),
+export const Default: Story = {
+  args: {
+    columns: usersColumns,
+    data: mockUsers,
+    rowActions: rowMenuItems,
   },
-  { key: 'email', label: 'Email', visible: true },
-  {
-    key: 'role',
-    label: 'Rôle',
-    visible: true,
-    selectFilter: {
-      options: [
-        { value: 'Administrateur', label: 'Administrateur' },
-        { value: 'Utilisateur', label: 'Utilisateur' },
-      ],
-    },
-    render: (row) => <Text as="span" variant="body-medium-default">{row.role}</Text>,
-  },
-  {
-    key: 'status',
-    label: 'Statut',
-    visible: true,
-    selectFilter: {
-      options: [
-        { value: 'Actif', label: 'Actif' },
-        { value: 'Invitation envoyée', label: 'Invitation envoyée' },
-      ],
-    },
-    render: (row) => (
-      <Tag
-        label={row.statusLabel}
-        status={row.status === 'Actif' ? 'positive' : 'warning'}
-        size="compact"
-        showDot
-      />
-    ),
-  },
-];
-
-export const WithFilters: Story = {
-  args: { columns, data: users, rowActions: rowMenuItems },
 };
 
 export const Loading: Story = {
-  args: { columns, data: [], loading: true, rowActions: rowMenuItems },
+  args: {
+    columns: usersColumns,
+    data: [],
+    loading: true,
+  },
 };
 
 export const Empty: Story = {
-  args: { columns, data: [], emptyMessage: 'Aucun utilisateur trouvé.', rowActions: rowMenuItems },
+  args: {
+    columns: usersColumns,
+    data: [],
+    emptyMessage: 'Aucun utilisateur trouvé.',
+  },
+};
+
+export const WithError: Story = {
+  args: {
+    columns: usersColumns,
+    data: [],
+    error: 'Une erreur est survenue lors du chargement des utilisateurs.',
+  },
 };

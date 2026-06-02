@@ -11,7 +11,23 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebSearch",
       "Bash(npm run *)",
-      "Bash(./node_modules/.bin/tsc --version)"
+      "Bash(./node_modules/.bin/tsc --version)",
+      "Bash(node -e \"const l = require\\('/Users/hertauxbenjamin/mon-design-system/node_modules/lucide-react'\\); console.log\\(['User','UserCog','Languages','AtSign'].filter\\(k => k in l\\)\\)\")",
+      "Bash(node -e ' *)",
+      "Bash(pkill -f \"vite\")",
+      "Bash(echo \"PID=$!\")",
+      "Bash(curl -s http://localhost:5173/)",
+      "Read(//tmp/**)",
+      "Read(//private/tmp/**)",
+      "Bash(node -e \"const l = require\\('/Users/hertauxbenjamin/mon-design-system/node_modules/lucide-react'\\); console.log\\('MailX:', typeof l.MailX, 'Mail:', typeof l.Mail, 'UserX:', typeof l.UserX, 'Lock:', typeof l.Lock, 'Zap:', typeof l.Zap\\)\")",
+      "Bash(curl -s http://localhost:5174/)",
+      "Bash(node -e \"const l = require\\('/Users/hertauxbenjamin/mon-design-system/node_modules/lucide-react'\\); ['AlertTriangle','Edit','Eye','Lock','Mail','MailX','Trash2','UserX','Zap','Plus'].forEach\\(n => console.log\\(n+':', typeof l[n]\\)\\)\")",
+      "Bash(curl -s http://localhost:5175/)",
+      "Bash(curl -s \"http://localhost:5175/src/pages/Clients/ClientsPage.tsx?transform=1\")",
+      "Bash(curl -s \"http://localhost:5175/src/pages/Users/UsersPage.tsx\")",
+      "Bash(node --input-type=module -e ' *)",
+      "Bash(curl -s http://localhost:5173)",
+      "Bash(chromium-cli screenshot *)"
     ],
     "additionalDirectories": [
       "/Users/hertauxbenjamin/mon-design-system/src/components/atoms"

@@ -21,7 +21,7 @@ export function UserCard({
   selected = false,
   onClick,
 }: UserCardProps) {
-  const fallback = `${firstName[0]}${lastName[0]}`.toUpperCase();
+  const fallback = `${firstName[0] ?? ''}${lastName[0] ?? ''}`.toUpperCase() || '?';
   const avatarSize = size === 'sm' ? 'compact' : 'default';
   const fullName = `${firstName} ${lastName}`;
   const isInteractive = onClick !== undefined;

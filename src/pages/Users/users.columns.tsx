@@ -1,20 +1,12 @@
 import type { ColumnConfig } from '../../types/column';
 import type { User } from '../../types/user';
 import { ROLE_OPTIONS } from './users.constants';
-import { Avatar, type DecorativeColor } from '../../components/atoms/Avatar/Avatar';
-import { Tag } from '../../components/atoms/Tag/Tag';
-import { Text } from '../../components/atoms/Text/Text';
+import { CellAvatar } from '../../components/atoms/TableCells/CellAvatar';
+import { CellText } from '../../components/atoms/TableCells/CellText';
+import { CellTag } from '../../components/atoms/TableCells/CellTag';
+import { CellJauge } from '../../components/atoms/TableCells/CellJauge';
 
 type TagStatus = 'positive' | 'neutral' | 'warning';
-
-const DECORATIVE_COLORS: DecorativeColor[] = ['green', 'blue', 'yellow', 'purple', 'pink', 'brown'];
-
-function resolveColor(seed: string, stored?: string | null): DecorativeColor {
-  if (stored && (DECORATIVE_COLORS as string[]).includes(stored)) return stored as DecorativeColor;
-  let hash = 0;
-  for (let i = 0; i < seed.length; i++) hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
-  return DECORATIVE_COLORS[hash % DECORATIVE_COLORS.length];
-}
 
 const STATUT_TAG: Record<string, { status: TagStatus; label: string }> = {
   'Actif': { status: 'positive', label: 'Actif' },
@@ -30,80 +22,50 @@ export const usersColumns: ColumnConfig<User>[] = [
     key: 'name',
     label: 'Utilisateur',
     visible: true,
-    render: (row) => {
-      const initials = `${row.first_name?.[0] ?? ''}${row.last_name?.[0] ?? ''}`.toUpperCase() || '?';
-      const color = resolveColor(row.id, row.color_decoration);
-      console.log('[Avatar color]', row.first_name, '| color_decoration:', row.color_decoration, '| resolved:', color);
-      return (
-        <div className="table-cell__with-avatar">
-          <Avatar fallback={initials} size="compact" colorDecoration={color} />
-          <Text as="span" variant="body-medium-default">
-            {`${row.first_name} ${row.last_name}`}
-          </Text>
-        </div>
-      );
-    },
+    render: (row) => (
+      <CellAvatar firstName={row.first_name ?? ''} lastName={row.last_name ?? ''} colorDecoration={row.color_decoration} />
+    ),
   },
   {
     key: 'email',
     label: 'Email',
     visible: false,
-    render: (row) => (
-      <Text as="span" variant="body-medium-default">
-        {(row as any).email ?? '–'}
-      </Text>
-    ),
+    render: (row) => <CellText value={(row as any).email ?? '–'} />,
   },
   {
     key: 'role',
     label: 'Rôle',
     visible: true,
-    selectFilter: {
-      options: [...ROLE_OPTIONS],
-    },
-    render: (row) => (
-      <Text as="span" variant="body-medium-default">{row.role}</Text>
-    ),
+    sortable: true,
+    render: (row) => <CellText value={row.role} />,
   },
   {
     key: 'statut',
     label: 'Statut',
     visible: true,
-    selectFilter: {
-      options: [
-        { value: 'Actif', label: 'Actif' },
-        { value: 'Invitation envoyée', label: 'Invitation envoyée' },
-      ],
-    },
     render: (row) => {
       const tag = getStatutTag(row.statut);
-      return <Tag label={tag.label} status={tag.status} size="compact" showDot />;
+      return <CellTag tags={[{ label: tag.label, status: tag.status }]} />;
     },
   },
   {
     key: 'last_activity',
     label: 'Dernière activité',
     visible: true,
-    render: (row) => (
-      <Text as="span" variant="body-medium-default" color="muted">
-        {row.last_activity ?? '–'}
-      </Text>
-    ),
+    render: (row) => <CellText value={row.last_activity || '–'} variant="muted" />,
   },
   {
     key: 'united_used',
-    label: 'Unités consommées',
-    visible: false,
+    label: 'Consommation',
+    visible: true,
     render: (row) => (
-      <Text as="span" variant="body-medium-default">{row.united_used}</Text>
+      <CellJauge value={row.united_used ?? 0} total={row.united_total ?? 100} />
     ),
   },
   {
     key: 'language',
     label: 'Langue',
     visible: false,
-    render: (row) => (
-      <Text as="span" variant="body-medium-default">{row.language}</Text>
-    ),
+    render: (row) => <CellText value={row.language ?? '–'} />,
   },
 ];

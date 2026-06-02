@@ -9,6 +9,7 @@ export type SelectSize = 'default' | 'compact';
 export interface SelectOption {
   value: string;
   label: string;
+  icon?: LucideIcon;
   disabled?: boolean;
 }
 
@@ -46,7 +47,7 @@ export function Select({
       <BaseSelect.Root
         value={value}
         defaultValue={defaultValue}
-        onValueChange={onChange}
+        onValueChange={(v) => v != null && onChange?.(v)}
         disabled={disabled}
       >
         {label && (
@@ -73,21 +74,31 @@ export function Select({
           <BaseSelect.Positioner className="select__positioner" alignItemWithTrigger={false} align="start" sideOffset={4}>
             <BaseSelect.Popup className="select__popup">
               <BaseSelect.List className="select__list">
-                {options.map((option) => (
-                  <BaseSelect.Item
-                    key={option.value}
-                    value={option.value}
-                    disabled={option.disabled}
-                    className="select__item"
-                  >
-                    <BaseSelect.ItemText>
-                      <Text as="span" variant="body-medium-default">{option.label}</Text>
-                    </BaseSelect.ItemText>
-                    <BaseSelect.ItemIndicator className="select__item-indicator">
-                      <Check size={14} strokeWidth={2} />
-                    </BaseSelect.ItemIndicator>
-                  </BaseSelect.Item>
-                ))}
+                {options.map((option) => {
+                  const OptionIcon = option.icon;
+                  return (
+                    <BaseSelect.Item
+                      key={option.value}
+                      value={option.value}
+                      disabled={option.disabled}
+                      className="select__item"
+                    >
+                      <BaseSelect.ItemText>
+                        <span className="select__item-label">
+                          {OptionIcon && (
+                            <span className="select__item-icon" aria-hidden>
+                              <OptionIcon size={14} strokeWidth={2} />
+                            </span>
+                          )}
+                          <Text as="span" variant="body-medium-default">{option.label}</Text>
+                        </span>
+                      </BaseSelect.ItemText>
+                      <BaseSelect.ItemIndicator className="select__item-indicator">
+                        <Check size={14} strokeWidth={2} />
+                      </BaseSelect.ItemIndicator>
+                    </BaseSelect.Item>
+                  );
+                })}
               </BaseSelect.List>
             </BaseSelect.Popup>
           </BaseSelect.Positioner>

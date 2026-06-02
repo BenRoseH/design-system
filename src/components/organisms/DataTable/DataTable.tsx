@@ -1,9 +1,6 @@
 import { useState } from 'react';
-import { SlidersHorizontal } from 'lucide-react';
 import { Table } from '../../atoms/Table/Table';
-import { Button } from '../../atoms/Button/Button';
 import { Select } from '../../atoms/Select/Select';
-import { Text } from '../../atoms/Text/Text';
 import type { ColumnConfig } from '../../../types/column';
 import type { ContextMenuItem } from '../../atoms/ContextMenu/ContextMenu';
 import './DataTable.css';
@@ -27,11 +24,10 @@ export function DataTable<T extends Record<string, any>>({
   onRowClick,
   rowActions,
 }: DataTableProps<T>) {
-  const [visibilityMap, setVisibilityMap] = useState<Record<string, boolean>>(
+  const [visibilityMap] = useState<Record<string, boolean>>(
     () => Object.fromEntries(columns.map((c) => [c.key, c.visible]))
   );
   const [filterValues, setFilterValues] = useState<Record<string, string>>({});
-  const [configOpen, setConfigOpen] = useState(false);
 
   const resolvedColumns = columns.map((c) => ({
     ...c,
@@ -49,10 +45,6 @@ export function DataTable<T extends Record<string, any>>({
       return String(row[col.key]) === val;
     })
   );
-
-  function toggleColumn(key: string) {
-    setVisibilityMap((prev) => ({ ...prev, [key]: !prev[key] }));
-  }
 
   function setFilter(key: string, value: string) {
     setFilterValues((prev) => ({ ...prev, [key]: value }));
@@ -82,13 +74,6 @@ export function DataTable<T extends Record<string, any>>({
               />
             ))}
           </div>
-          <Button
-            hierarchy="minimal"
-            layout="icon-only"
-            icon={SlidersHorizontal}
-            aria-label="Configurer les colonnes"
-            onClick={() => setConfigOpen((o) => !o)}
-          />
         </div>
       )}
 
@@ -102,32 +87,6 @@ export function DataTable<T extends Record<string, any>>({
           onRowClick={onRowClick}
           rowActions={rowActions}
         />
-
-        {configOpen && (
-          <div className="data-table__config-panel">
-            <Text as="p" variant="body-medium-strong">Colonnes affichées</Text>
-            <ul className="data-table__config-list">
-              {resolvedColumns.map((col) => (
-                <li key={col.key} className="data-table__config-item">
-                  <label className="data-table__config-label">
-                    <input
-                      type="checkbox"
-                      checked={col.visible}
-                      onChange={() => toggleColumn(col.key)}
-                      className="data-table__config-checkbox"
-                    />
-                    <Text as="span" variant="body-medium-default">{col.label || col.key}</Text>
-                  </label>
-                </li>
-              ))}
-            </ul>
-            <div className="data-table__config-footer">
-              <Button hierarchy="minimal" layout="text" onClick={() => setConfigOpen(false)}>
-                Fermer
-              </Button>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

@@ -1,12 +1,15 @@
-import { TableHeaderCell } from './TableHeaderCell';
+import { useState, useMemo } from 'react';
 import { TableCell } from './TableCell';
 import { TableRow } from './TableRow';
 import { TableHeaderRow } from './TableHeaderRow';
 import { ActionMenu } from '../ActionMenu/ActionMenu';
+import { CellHeader } from '../TableCells/CellHeader';
 import { Text } from '../Text/Text';
 import type { ContextMenuItem } from '../ContextMenu/ContextMenu';
 import type { ColumnConfig } from '../../../types/column';
 import './Table.css';
+
+type SortDir = 'asc' | 'desc' | null;
 
 interface TableProps<T extends Record<string, any>> {
   columns: ColumnConfig<T>[];
@@ -39,8 +42,29 @@ export function Table<T extends Record<string, any>>({
   onRowClick,
   rowActions,
 }: TableProps<T>) {
+  const [sortCol, setSortCol] = useState<string | null>(null);
+  const [sortDir, setSortDir] = useState<SortDir>(null);
+
   const visibleColumns = columns.filter((c) => c.visible);
   const colCount = visibleColumns.length + (rowActions ? 1 : 0);
+
+  function handleSort(key: string, next: SortDir) {
+    setSortCol(next === null ? null : key);
+    setSortDir(next);
+  }
+
+  const sortedData = useMemo(() => {
+    if (!sortCol || !sortDir) return data;
+    return [...data].sort((a, b) => {
+      const va = a[sortCol];
+      const vb = b[sortCol];
+      const cmp =
+        typeof va === 'number' && typeof vb === 'number'
+          ? va - vb
+          : String(va ?? '').localeCompare(String(vb ?? ''), undefined, { numeric: true });
+      return sortDir === 'asc' ? cmp : -cmp;
+    });
+  }, [data, sortCol, sortDir]);
 
   function resolveActions(row: T): ContextMenuItem[] | null {
     if (!rowActions) return null;
@@ -62,7 +86,7 @@ export function Table<T extends Record<string, any>>({
         </tr>
       );
     }
-    if (!data || data.length === 0) {
+    if (!sortedData || sortedData.length === 0) {
       return (
         <tr>
           <td colSpan={colCount} className="table-state__cell">
@@ -71,7 +95,7 @@ export function Table<T extends Record<string, any>>({
         </tr>
       );
     }
-    return data.map((row, i) => {
+    return sortedData.map((row, i) => {
       const actions = resolveActions(row);
       return (
         <TableRow key={row.id ?? i} onClick={onRowClick ? () => onRowClick(row) : undefined}>
@@ -101,11 +125,20 @@ export function Table<T extends Record<string, any>>({
       <thead>
         <TableHeaderRow>
           {visibleColumns.map((col) => (
-            <TableHeaderCell key={col.key} align={col.align}>
-              {col.label}
-            </TableHeaderCell>
+            <th key={col.key} className="table__th">
+              <CellHeader
+                label={col.label}
+                sortable={col.sortable !== false}
+                sortState={sortCol === col.key ? sortDir : null}
+                onSort={(next) => handleSort(col.key, next)}
+              />
+            </th>
           ))}
-          {rowActions && <TableHeaderCell align="center" width="48px" />}
+          {rowActions && (
+            <th className="table__th table__th--actions">
+              <CellHeader label="" sortable={false} />
+            </th>
+          )}
         </TableHeaderRow>
       </thead>
       <tbody>{renderBody()}</tbody>

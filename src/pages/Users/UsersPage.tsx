@@ -1,45 +1,18 @@
 import { useState, useEffect } from 'react';
-import { User, Users, BarChart2, Settings, Zap, Bot, ScrollText, Network, Library, Eye, Pencil, Trash2 } from 'lucide-react';
+import { Eye, Pencil, Trash2, UserPlus } from 'lucide-react';
 import { GlobalLayout } from '../../components/organisms/GlobalLayout/GlobalLayout';
 import { PageHeader } from '../../components/molecules/PageHeader/PageHeader';
 import { DataTable } from '../../components/organisms/DataTable/DataTable';
 import { MultiSelect } from '../../components/atoms/MultiSelect/MultiSelect';
 import { Dialog } from '../../components/atoms/Dialog/Dialog';
+import { UserDrawer } from '../../components/organisms/UserDrawer/UserDrawer';
 import { useQueryClient } from '@tanstack/react-query';
 import { useUsers } from '../../hooks/useUsers';
-import { assignMissingColors, deleteUser } from '../../services/users';
+import { assignMissingColors, createUser, deleteUser, randomDecorativeColor, updateUser } from '../../services/users';
 import { useToast } from '../../components/atoms/Toast/ToastProvider';
 import { usersColumns } from './users.columns';
 import type { ContextMenuItem } from '../../components/atoms/ContextMenu/ContextMenu';
 import type { User as UserType } from '../../types/user';
-
-const navSections = [
-  {
-    label: 'Organisation',
-    items: [
-      { label: 'Utilisateurs', icon: User, selected: true, onClick: () => {} },
-      { label: 'Groupes', icon: Users, onClick: () => {} },
-      { label: 'Usages', icon: BarChart2, onClick: () => {} },
-    ],
-  },
-  {
-    label: 'Configuration',
-    items: [
-      { label: 'Paramètres', icon: Settings, onClick: () => {} },
-      { label: 'Connecteurs', icon: Zap, onClick: () => {} },
-      { label: "Packs d'agents", icon: Bot, onClick: () => {} },
-      { label: 'CGU', icon: ScrollText, onClick: () => {} },
-    ],
-  },
-  {
-    label: 'Espace souverain',
-    items: [
-      { label: 'Espaces de travail', icon: Network, onClick: () => {} },
-      { label: 'Bases documentaires', icon: Library, onClick: () => {} },
-      { label: 'Paramètres', icon: Settings, onClick: () => {} },
-    ],
-  },
-];
 
 function buildRowActions(row: UserType, onDelete: (user: UserType) => void): ContextMenuItem[] {
   return [
@@ -56,15 +29,13 @@ function buildRowActions(row: UserType, onDelete: (user: UserType) => void): Con
   ];
 }
 
-interface UsersPageProps {
-  onAddUser?: () => void;
-}
-
-export default function UsersPage({ onAddUser }: UsersPageProps = {}) {
+export default function UsersPage() {
   const [statuts, setStatuts] = useState<string[]>([]);
   const [roles, setRoles] = useState<string[]>([]);
   const [userToDelete, setUserToDelete] = useState<UserType | null>(null);
   const [deleting, setDeleting] = useState(false);
+  const [selectedUser, setSelectedUser] = useState<UserType | null>(null);
+  const [addUserOpen, setAddUserOpen] = useState(false);
 
   const queryClient = useQueryClient();
   const { toast } = useToast();
@@ -80,6 +51,20 @@ export default function UsersPage({ onAddUser }: UsersPageProps = {}) {
     });
   }, [users, queryClient]);
 
+  async function handleAdd(data: Pick<UserType, 'first_name' | 'last_name' | 'email' | 'role' | 'language'>) {
+    await createUser({
+      ...data,
+      color_decoration: randomDecorativeColor(),
+      statut: 'Invitation envoyée',
+      last_activity: '',
+      united_used: 0,
+      united_total: 100,
+    });
+    await queryClient.invalidateQueries({ queryKey: ['users'] });
+    setAddUserOpen(false);
+    toast({ title: `${data.first_name} ${data.last_name} a été créé`, variant: 'positive' });
+  }
+
   async function handleConfirmDelete() {
     if (!userToDelete) return;
     const name = `${userToDelete.first_name} ${userToDelete.last_name}`;
@@ -94,7 +79,8 @@ export default function UsersPage({ onAddUser }: UsersPageProps = {}) {
   const navUser = {
     firstName: users?.[0]?.first_name || 'N',
     lastName: users?.[0]?.last_name || 'A',
-    company: '',
+    company: 'Leroy Merlin',
+    colorDecoration: users?.[0]?.color_decoration,
   };
 
   const columns = usersColumns.map((col) => ({
@@ -130,11 +116,11 @@ export default function UsersPage({ onAddUser }: UsersPageProps = {}) {
     : '';
 
   return (
-    <GlobalLayout sections={navSections} user={navUser}>
+    <GlobalLayout activePath="/users" user={navUser}>
       <PageHeader
         title="Utilisateurs"
         description="Créez et modifiez les utilisateurs de Live Intelligence."
-        primaryAction={onAddUser ? { label: 'Nouvel utilisateur', onClick: onAddUser } : undefined}
+        primaryAction={{ label: 'Ajouter un utilisateur', icon: UserPlus, onClick: () => setAddUserOpen(true) }}
       />
       <DataTable
         columns={columns}
@@ -142,8 +128,27 @@ export default function UsersPage({ onAddUser }: UsersPageProps = {}) {
         loading={isLoading}
         error={error ? 'Une erreur est survenue lors du chargement des utilisateurs.' : undefined}
         emptyMessage="Aucun utilisateur trouvé."
-        onRowClick={(row) => console.log('row clicked:', row)}
+        onRowClick={(row) => setSelectedUser(row as UserType)}
         rowActions={(row) => buildRowActions(row as UserType, setUserToDelete)}
+      />
+
+      <UserDrawer
+        user={selectedUser}
+        createOpen={addUserOpen}
+        onClose={() => { setSelectedUser(null); setAddUserOpen(false); }}
+        onAdd={handleAdd}
+        onDelete={setUserToDelete}
+        onEdit={async (updated) => {
+          await updateUser(updated.id, {
+            first_name: updated.first_name,
+            last_name: updated.last_name,
+            email: updated.email,
+            role: updated.role,
+            language: updated.language,
+          });
+          await queryClient.invalidateQueries({ queryKey: ['users'] });
+          toast({ title: `${updated.first_name} ${updated.last_name} a été modifié`, variant: 'positive' });
+        }}
       />
 
       <Dialog

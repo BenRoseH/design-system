@@ -1,5 +1,27 @@
 @import './tokens/index.css';
 
+.mode-switch {
+  position: fixed;
+  bottom: var(--spacing-medium);
+  right: var(--spacing-medium);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xsmall);
+  background: var(--color-bg-default);
+  border: var(--border-default) solid var(--color-border-muted);
+  border-radius: var(--radius-pill);
+  padding: var(--spacing-xsmall) var(--spacing-small);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mode-switch__label {
+  font-size: var(--typography-body-small-default-font-size);
+  line-height: var(--typography-body-small-default-line-height);
+  color: var(--color-content-muted);
+  white-space: nowrap;
+}
+
 .app {
   max-width: 640px;
   margin: 0 auto;

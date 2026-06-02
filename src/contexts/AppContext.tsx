@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from 'react'
 
-type AppMode = 'orange-business' | 'client'
+export type AppMode = 'orange-business' | 'client'
 
 type AppContextType = {
   mode: AppMode

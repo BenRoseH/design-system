@@ -1,0 +1,91 @@
+@import '../../../tokens/index.css';
+
+/* ============================================================
+   CARD
+   ============================================================ */
+
+.user-drawer__card {
+  background: var(--color-bg-default);
+  border: var(--border-default) solid var(--color-border-muted);
+  border-radius: var(--radius-large);
+  padding: var(--spacing-medium) var(--spacing-large);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.user-drawer__hero {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-medium);
+}
+
+.user-drawer__hero-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-3xsmall);
+  flex: 1;
+  min-width: 0;
+}
+
+.user-drawer__hero-activity {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3xsmall);
+  color: var(--color-content-muted);
+}
+
+/* ============================================================
+   USAGES
+   ============================================================ */
+
+.user-drawer__usage {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xsmall);
+}
+
+/* ============================================================
+   INFORMATIONS PERSONNELLES
+   ============================================================ */
+
+.user-drawer__info-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-drawer__info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-medium);
+  padding: var(--spacing-xsmall) 0;
+  border-bottom: var(--border-default) solid var(--color-border-muted);
+}
+
+.user-drawer__info-row:last-child {
+  border-bottom: none;
+}
+
+.user-drawer__info-label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xsmall);
+  color: var(--color-content-muted);
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   EDIT FORM
+   ============================================================ */
+
+.user-drawer__edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+}

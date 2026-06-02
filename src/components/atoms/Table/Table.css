@@ -28,6 +28,24 @@
 }
 
 /* ============================================================
+   HEADER TH WRAPPER
+   ============================================================ */
+
+.table__th {
+  padding: 0;
+  vertical-align: middle;
+  border-right: var(--border-default) solid var(--color-border-minimal);
+}
+
+.table__th:last-child {
+  border-right: none;
+}
+
+.table__th--actions {
+  width: 48px;
+}
+
+/* ============================================================
    SKELETON
    ============================================================ */
 
