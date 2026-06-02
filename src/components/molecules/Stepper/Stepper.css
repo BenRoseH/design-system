@@ -1,0 +1,128 @@
+@import '../../../tokens/index.css';
+
+/* ============================================================
+   STEPPER
+   ============================================================ */
+
+.stepper {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.stepper--vertical {
+  flex-direction: column;
+}
+
+/* ============================================================
+   STEP
+   ============================================================ */
+
+.stepper__step {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xsmall);
+  cursor: default;
+  /* button reset */
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+/* Horizontal: indicator on top, label centered below */
+.stepper--horizontal .stepper__step {
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Vertical: indicator left, label right */
+.stepper--vertical .stepper__step {
+  flex-direction: row;
+  align-items: center;
+}
+
+.stepper__step--clickable {
+  cursor: pointer;
+}
+
+.stepper__step--clickable:hover .stepper__indicator {
+  opacity: 0.8;
+}
+
+/* ============================================================
+   INDICATOR
+   ============================================================ */
+
+.stepper__indicator {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stepper__step--pending .stepper__indicator {
+  background: var(--color-bg-secondary);
+  border: var(--border-default) solid var(--color-border-default);
+}
+
+.stepper__step--pending .stepper__indicator .text {
+  color: var(--color-content-disable);
+}
+
+.stepper__step--active .stepper__indicator {
+  background: var(--color-content-brand-primary);
+}
+
+.stepper__step--active .stepper__indicator .text {
+  color: rgba(255, 255, 255, 1);
+}
+
+.stepper__step--completed .stepper__indicator {
+  background: var(--color-status-positive-muted);
+  border: var(--border-default) solid var(--color-status-positive-emphasized);
+}
+
+/* ============================================================
+   CONTENT (label + description)
+   ============================================================ */
+
+.stepper__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.stepper--horizontal .stepper__content {
+  align-items: center;
+  text-align: center;
+}
+
+/* ============================================================
+   CONNECTOR
+   ============================================================ */
+
+.stepper--horizontal .stepper__connector {
+  flex: 1;
+  height: 1px;
+  min-width: var(--spacing-medium);
+  margin-top: 15px; /* vertically aligns center with 32px indicator */
+}
+
+.stepper--vertical .stepper__connector {
+  width: 1px;
+  height: 24px;
+  margin-left: 15px;
+}
+
+.stepper__connector--pending {
+  background: var(--color-border-muted);
+}
+
+.stepper__connector--completed {
+  background: var(--color-status-positive-emphasized);
+}

@@ -6,11 +6,14 @@ import { DataTable } from '../../components/organisms/DataTable/DataTable';
 import { MultiSelect } from '../../components/atoms/MultiSelect/MultiSelect';
 import { Dialog } from '../../components/atoms/Dialog/Dialog';
 import { UserDrawer } from '../../components/organisms/UserDrawer/UserDrawer';
+import { FormPage } from '../FormPage/FormPage';
+import { DynamicForm } from '../../components/organisms/DynamicForm/DynamicForm';
 import { useQueryClient } from '@tanstack/react-query';
 import { useUsers } from '../../hooks/useUsers';
 import { assignMissingColors, createUser, deleteUser, randomDecorativeColor, updateUser } from '../../services/users';
 import { useToast } from '../../components/atoms/Toast/ToastProvider';
 import { usersColumns } from './users.columns';
+import { usersFields } from './users.fields';
 import type { ContextMenuItem } from '../../components/atoms/ContextMenu/ContextMenu';
 import type { User as UserType } from '../../types/user';
 
@@ -134,9 +137,7 @@ export default function UsersPage() {
 
       <UserDrawer
         user={selectedUser}
-        createOpen={addUserOpen}
-        onClose={() => { setSelectedUser(null); setAddUserOpen(false); }}
-        onAdd={handleAdd}
+        onClose={() => setSelectedUser(null)}
         onDelete={setUserToDelete}
         onEdit={async (updated) => {
           await updateUser(updated.id, {
@@ -150,6 +151,26 @@ export default function UsersPage() {
           toast({ title: `${updated.first_name} ${updated.last_name} a été modifié`, variant: 'positive' });
         }}
       />
+
+      <FormPage
+        title="Nouvel utilisateur"
+        isOpen={addUserOpen}
+        onClose={() => setAddUserOpen(false)}
+        nextLabel="Créer l'utilisateur"
+        formId="create-user-form"
+      >
+        <DynamicForm
+          id="create-user-form"
+          fields={usersFields}
+          onSubmit={(data) => handleAdd({
+            first_name: data.first_name,
+            last_name: data.last_name,
+            email: data.email,
+            role: data.role,
+            language: data.language,
+          })}
+        />
+      </FormPage>
 
       <Dialog
         open={userToDelete !== null}

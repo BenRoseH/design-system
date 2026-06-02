@@ -14,4 +14,5 @@ export type Client = {
   invitations_sent: number
   invitations_expired: number
   users_blocked: number
+  credits_limit: number | null
 }

@@ -63,7 +63,7 @@ export const clientsColumns: ColumnConfig<Client>[] = [
   },
   {
     key: 'licences_es',
-    label: 'Accès Espace Souverain',
+    label: 'Accès ES',
     visible: true,
     render: (row) => (
       <CellJauge

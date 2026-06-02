@@ -27,10 +27,12 @@
       "Bash(curl -s \"http://localhost:5175/src/pages/Users/UsersPage.tsx\")",
       "Bash(node --input-type=module -e ' *)",
       "Bash(curl -s http://localhost:5173)",
-      "Bash(chromium-cli screenshot *)"
+      "Bash(chromium-cli screenshot *)",
+      "Bash(mkdir -p /Users/hertauxbenjamin/mon-design-system/src/components/molecules/Stepper)"
     ],
     "additionalDirectories": [
-      "/Users/hertauxbenjamin/mon-design-system/src/components/atoms"
+      "/Users/hertauxbenjamin/mon-design-system/src/components/atoms",
+      "/Users/hertauxbenjamin/mon-design-system/src/components/molecules"
     ]
   }
 }

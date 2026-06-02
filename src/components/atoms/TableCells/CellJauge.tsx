@@ -47,7 +47,7 @@ export function CellJauge({ value, total, showLabel = true }: CellJaugeProps) {
           transform={`rotate(-90 ${SIZE / 2} ${SIZE / 2})`}
         />
       </svg>
-      {showLabel && <span className="cell-jauge__label">{pct}%</span>}
+      {showLabel && <span className="cell-jauge__label">{value} / {total}</span>}
     </div>
   );
 }
