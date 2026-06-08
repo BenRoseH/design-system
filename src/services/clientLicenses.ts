@@ -1,5 +1,5 @@
 import { supabase } from '../lib/supabase'
-import { ClientLicense, ClientLicenseUsage } from '../types/clientLicense'
+import type { ClientLicense, ClientLicenseUsage } from '../types/clientLicense'
 
 export async function getClientLicenses(clientId: string): Promise<ClientLicense[]> {
   const { data, error } = await supabase

@@ -5,7 +5,7 @@ import {
   getAllLicenseUsage,
   upsertClientLicense
 } from '../services/clientLicenses'
-import { ClientLicense } from '../types/clientLicense'
+import type { ClientLicense } from '../types/clientLicense'
 
 export function useClientLicenses(clientId: string) {
   return useQuery({

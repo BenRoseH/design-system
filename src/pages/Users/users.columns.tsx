@@ -1,6 +1,5 @@
 import type { ColumnConfig } from '../../types/column';
 import type { User } from '../../types/user';
-import { ROLE_OPTIONS } from './users.constants';
 import { CellAvatar } from '../../components/atoms/TableCells/CellAvatar';
 import { CellText } from '../../components/atoms/TableCells/CellText';
 import { CellTag } from '../../components/atoms/TableCells/CellTag';

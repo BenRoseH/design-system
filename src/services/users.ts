@@ -60,7 +60,7 @@ export async function getUserById(id: string): Promise<User> {
 export async function createUser(userData: Omit<User, 'id' | 'created_at'>): Promise<User> {
   const { data, error } = await supabase
     .from('users client')
-    .insert({ color_decoration: randomDecorativeColor(), ...userData })
+    .insert({ ...userData, color_decoration: userData.color_decoration || randomDecorativeColor() })
     .select()
     .single()
 

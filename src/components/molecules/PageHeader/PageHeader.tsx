@@ -31,24 +31,36 @@ export function PageHeader({ title, description, primaryAction, secondaryAction 
       {hasActions && (
         <div className="page-header__actions">
           {secondaryAction && (
-            <Button
-              hierarchy="default"
-              layout={secondaryAction.icon ? 'icon-text' : 'text'}
-              icon={secondaryAction.icon}
-              onClick={secondaryAction.onClick}
-            >
-              {secondaryAction.label}
-            </Button>
+            secondaryAction.icon ? (
+              <Button
+                hierarchy="default"
+                layout="icon-text"
+                icon={secondaryAction.icon}
+                onClick={secondaryAction.onClick}
+              >
+                {secondaryAction.label}
+              </Button>
+            ) : (
+              <Button hierarchy="default" layout="text" onClick={secondaryAction.onClick}>
+                {secondaryAction.label}
+              </Button>
+            )
           )}
           {primaryAction && (
-            <Button
-              hierarchy="brand"
-              layout={primaryAction.icon ? 'icon-text' : 'text'}
-              icon={primaryAction.icon}
-              onClick={primaryAction.onClick}
-            >
-              {primaryAction.label}
-            </Button>
+            primaryAction.icon ? (
+              <Button
+                hierarchy="brand"
+                layout="icon-text"
+                icon={primaryAction.icon}
+                onClick={primaryAction.onClick}
+              >
+                {primaryAction.label}
+              </Button>
+            ) : (
+              <Button hierarchy="brand" layout="text" onClick={primaryAction.onClick}>
+                {primaryAction.label}
+              </Button>
+            )
           )}
         </div>
       )}

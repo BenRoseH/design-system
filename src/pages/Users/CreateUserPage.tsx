@@ -1,4 +1,3 @@
-import { User, Users, BarChart2, Settings, Zap, Bot, ScrollText, Network, Library } from 'lucide-react';
 import { GlobalLayout } from '../../components/organisms/GlobalLayout/GlobalLayout';
 import { PageHeader } from '../../components/molecules/PageHeader/PageHeader';
 import { DynamicForm } from '../../components/organisms/DynamicForm/DynamicForm';
@@ -7,34 +6,6 @@ import { useToast } from '../../components/atoms/Toast/ToastProvider';
 import { usersFields } from './users.fields';
 import './CreateUserPage.css';
 
-const navSections = [
-  {
-    label: 'Organisation',
-    items: [
-      { label: 'Utilisateurs', icon: User, selected: true, onClick: () => {} },
-      { label: 'Groupes', icon: Users, onClick: () => {} },
-      { label: 'Usages', icon: BarChart2, onClick: () => {} },
-    ],
-  },
-  {
-    label: 'Configuration',
-    items: [
-      { label: 'Paramètres', icon: Settings, onClick: () => {} },
-      { label: 'Connecteurs', icon: Zap, onClick: () => {} },
-      { label: "Packs d'agents", icon: Bot, onClick: () => {} },
-      { label: 'CGU', icon: ScrollText, onClick: () => {} },
-    ],
-  },
-  {
-    label: 'Espace souverain',
-    items: [
-      { label: 'Espaces de travail', icon: Network, onClick: () => {} },
-      { label: 'Bases documentaires', icon: Library, onClick: () => {} },
-      { label: 'Paramètres', icon: Settings, onClick: () => {} },
-    ],
-  },
-];
-
 const navUser = { firstName: '', lastName: '', company: '' };
 
 interface CreateUserPageProps {
@@ -42,8 +13,8 @@ interface CreateUserPageProps {
   onSuccess: () => void;
 }
 
-export default function CreateUserPage({ onCancel, onSuccess }: CreateUserPageProps) {
-  const { mutate, isPending } = useCreateUser();
+export default function CreateUserPage({ onSuccess }: CreateUserPageProps) {
+  const { mutate } = useCreateUser();
   const { toast } = useToast();
 
   function handleSubmit(data: Record<string, any>) {
@@ -81,7 +52,7 @@ export default function CreateUserPage({ onCancel, onSuccess }: CreateUserPagePr
   }
 
   return (
-    <GlobalLayout sections={navSections} user={navUser}>
+    <GlobalLayout activePath="/users" user={navUser}>
       <PageHeader
         title="Nouvel utilisateur"
         description="Renseignez les informations du nouvel utilisateur."

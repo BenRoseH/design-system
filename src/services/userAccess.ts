@@ -1,5 +1,5 @@
 import { supabase } from '../lib/supabase'
-import { UserAccess } from '../types/userAccess'
+import type { UserAccess } from '../types/userAccess'
 
 export async function getUserAccessByUserId(userId: number): Promise<UserAccess[]> {
   const { data, error } = await supabase
